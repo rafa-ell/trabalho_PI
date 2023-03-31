@@ -1,6 +1,0 @@
-<?php
-
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DBNAME', 'app_pi');
