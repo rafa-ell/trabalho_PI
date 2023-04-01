@@ -5,7 +5,7 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) .'/acoes/verifica_sess
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) .'/controllers/cliente.controller.php');
 
 $controller = new ClienteController();
-$clientes = $controller->buscarTodos();
+// $clientes = $controller->buscarTodos();
 
 ?>
 <div class="container">

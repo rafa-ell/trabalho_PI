@@ -5,6 +5,8 @@ class Cliente {
     private $nome;
     private $cpf_cnpj;
     private $telefone;
+    private $email;
+    private $senha;
 
     public function setId($id) {
         $this->id = $id;
@@ -36,5 +38,21 @@ class Cliente {
 
     public function getTelefone() {
         return $this->telefone;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setSenha($senha) {
+        $this->senha = $senha;
+    }
+
+    public function getSenha() {
+        return $this->senha;
     }
 }
