@@ -2,44 +2,50 @@
 session_start();
 
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/acoes/verifica_sessao.php');
-require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/cliente.class.php");
-require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/cliente.controller.php");
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/profissional.class.php");
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/profissional.controller.php");
 
-$cliente = new Cliente();
+$profissional = new Profissional();
 
 if (isset($_POST) && isset($_POST['id'])) {
     $id         = addslashes(filter_input(INPUT_POST, 'id'));
     $nome       = addslashes(filter_input(INPUT_POST, 'nome'));
-    $cpfcnpj    = addslashes(filter_input(INPUT_POST, 'cpfcnpj'));
+    $cnpj    = addslashes(filter_input(INPUT_POST, 'cnpj'));
     $telefone   = addslashes(filter_input(INPUT_POST, 'telefone'));
+    $servico   = addslashes(filter_input(INPUT_POST, 'servico'));
+    $preco_hora   = addslashes(filter_input(INPUT_POST, 'precohora'));
     $email   = addslashes(filter_input(INPUT_POST, 'email'));
     $senha   = addslashes(filter_input(INPUT_POST, 'senha'));
-    var_dump($cpfcnpj);
+   
 
-    if (empty($nome) || empty($cpfcnpj)) {
-        $_SESSION['mensagem'] = "Obrigatório informar Nome e CPF/CNPJ";
+    if (empty($nome) || empty($cnpj)) {
+        $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ1";
         $_SESSION['sucesso'] = false;
-        header('Location:../public/cad_cliente.php?key=' . $id);
+        header('Location:../public/cad_profissional.php?key=' . $id);
         die();
     }
 
 
     $nome = isset($_POST['nome']) ? $_POST['nome'] : null;
-    $cpfcnpj = isset($_POST['cpfcnpj']) ? $_POST['cpfcnpj'] : null;
+    $cnpj = isset($_POST['cnpj']) ? $_POST['cnpj'] : null;
     $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
+    $servico = isset($_POST['servico']) ? $_POST['servico'] : null;
+    $preco_hora = isset($_POST['precohora']) ? $_POST['precohora'] : null;
     $email = isset($_POST['email']) ? $_POST['email'] : null;
     $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
 
-    if ($nome && $cpfcnpj) {
+    if ($nome && $cnpj) {
 
-        $cliente->setNome($nome);
-        $cliente->setCpfCnpj($cpfcnpj);
-        $cliente->setTelefone($telefone);
-        $cliente->setEmail($email);
-        $cliente->setSenha($senha);
+        $profissional->setNome($nome);
+        $profissional->setCnpj($cnpj);
+        $profissional->setTelefone($telefone);
+        $profissional->setServico($servico);
+        $profissional->setPrecoHora($preco_hora);
+        $profissional->setEmail($email);
+        $profissional->setSenha($senha);
 
-        $dao = new ClienteController();
-        $resultado = $dao->criarCliente($cliente);
+        $dao = new ProfissionalController();
+        $resultado = $dao->criarProfissional($profissional);
         if ($resultado) {
             $_SESSION['mensagem'] = "Criado com sucesso";
             $_SESSION['sucesso'] = true;
@@ -48,10 +54,10 @@ if (isset($_POST) && isset($_POST['id'])) {
             $_SESSION['sucesso'] = false;
         }
     } else {
-        $_SESSION['mensagem'] = "Obrigatório informar Nome e CPF/CNPJ";
+        $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ2";
         $_SESSION['sucesso'] = false;
     }
-    header('Location:../public/cad_cliente.php');
+    header('Location:../public/cad_profissional.php');
     // $cliente->setId($id);
     // $cliente->setNome($nome);
     // $cliente->setCpfCnpj($cpfcnpj);
