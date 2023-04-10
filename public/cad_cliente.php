@@ -32,14 +32,7 @@ if (isset($_GET) && isset($_GET['key'])) {
             <label for="telefone" class="form-label">Telefone</label>
             <input type="tel" class="form-control" id="telefone" name="telefone" value="<?= $cliente->getTelefone() ?>">
         </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value="<?= $email->getEmail() ?>">
-        </div>
-        <div class="mb-3">
-            <label for="senha" class="form-label">Senha</label>
-            <input type="email" class="form-control" id="email" name="email" value="<?= $email->getEmail() ?>">
-        </div>
+        
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 
