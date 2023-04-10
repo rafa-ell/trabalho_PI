@@ -12,6 +12,8 @@ if (isset($_POST) && isset($_POST['id'])) {
     $nome       = addslashes(filter_input(INPUT_POST, 'nome'));
     $cpfcnpj    = addslashes(filter_input(INPUT_POST, 'cpfcnpj'));
     $telefone   = addslashes(filter_input(INPUT_POST, 'telefone'));
+    $email   = addslashes(filter_input(INPUT_POST, 'email'));
+    $senha   = addslashes(filter_input(INPUT_POST, 'senha'));
     var_dump($cpfcnpj);
 
     if (empty($nome) || empty($cpfcnpj)) {
@@ -20,33 +22,21 @@ if (isset($_POST) && isset($_POST['id'])) {
         header('Location:../public/cad_cliente.php?key=' . $id);
         die();
     }
-    $cliente->setId($id);
-    $cliente->setNome($nome);
-    $cliente->setCpfCnpj($cpfcnpj);
-    $cliente->setTelefone($telefone);
 
-    $controller = new ClienteController();
-    $resultado = $controller->atualizarCliente($cliente);
-
-    if ($resultado) {
-        $_SESSION['mensagem'] = "Atualizado com sucesso";
-        $_SESSION['sucesso'] = true;
-    } else {
-        $_SESSION['mensagem'] = "Erro ao atualizar";
-        $_SESSION['sucesso'] = false;
-    }
-    header('Location:../public/cad_cliente.php');
-} else {
 
     $nome = isset($_POST['nome']) ? $_POST['nome'] : null;
     $cpfcnpj = isset($_POST['cpfcnpj']) ? $_POST['cpfcnpj'] : null;
     $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
+    $email = isset($_POST['email']) ? $_POST['email'] : null;
+    $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
 
     if ($nome && $cpfcnpj) {
 
         $cliente->setNome($nome);
         $cliente->setCpfCnpj($cpfcnpj);
         $cliente->setTelefone($telefone);
+        $cliente->setEmail($email);
+        $cliente->setSenha($senha);
 
         $dao = new ClienteController();
         $resultado = $dao->criarCliente($cliente);
@@ -62,4 +52,22 @@ if (isset($_POST) && isset($_POST['id'])) {
         $_SESSION['sucesso'] = false;
     }
     header('Location:../public/cad_cliente.php');
-}
+    // $cliente->setId($id);
+    // $cliente->setNome($nome);
+    // $cliente->setCpfCnpj($cpfcnpj);
+    // $cliente->setTelefone($telefone);
+    // $cliente->setEmail($email);
+    // $cliente->setSenha($senha);
+
+    // $controller = new ClienteController();
+    // $resultado = $controller->atualizarCliente($cliente);
+
+    // if ($resultado) {
+    //     $_SESSION['mensagem'] = "Atualizado com sucesso";
+    //     $_SESSION['sucesso'] = true;
+    // } else {
+    //     $_SESSION['mensagem'] = "Erro ao atualizar";
+    //     $_SESSION['sucesso'] = false;
+    // }
+    // header('Location:../public/cad_cliente.php');
+} 

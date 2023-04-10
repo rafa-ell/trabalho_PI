@@ -13,8 +13,11 @@ require_once('./header.php');
             <label for="senha" class="form-label">Senha</label>
             <input type="password" class="form-control" id="senha" name="senha">
         </div>
+        <div style="display: flex; flex-direction: column;">
+            <a href="cad_cliente.php">Cadastro de cliente</a>
+            <a href="cad_profissional.php">Cadastro de profissional</a>
+        </div>
         <button type="submit" class="btn btn-primary">Login</button>
-        <a href="cad_cliente.php">Cadastra-se</a>
     </form>
     <?php
     if (isset($_SESSION) && isset($_SESSION['mensagem'])) { ?>
@@ -27,5 +30,3 @@ require_once('./header.php');
 
 </div>
 
-<?php
-require_once('./footer.php');

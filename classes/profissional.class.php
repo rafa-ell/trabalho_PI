@@ -7,6 +7,8 @@ class Profissional {
     private $telefone;
     private $servico;
     private $preco_hora;
+    private $email;
+    private $senha;
 
     public function setId($id) {
         $this->id = $id;
@@ -48,11 +50,27 @@ class Profissional {
         return $this->servico;
     }
 
-    public function setPreco_hora($preco_hora) {
-        $this->ativo = $preco_hora;
+    public function setPrecoHora($preco_hora) {
+        $this->preco_hora = $preco_hora;
     }
 
-    public function getPreco_hora() {
+    public function getPrecoHora() {
         return $this->preco_hora;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setSenha($senha) {
+        $this->senha = $senha;
+    }
+
+    public function getSenha() {
+        return $this->senha;
     }
 }

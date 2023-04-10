@@ -9,18 +9,19 @@ class ProfissionalDAO
     {
         $pdo = connectDb();
         try {
-            $stmt = $pdo->prepare("SELECT * FROM profissional;");
+            $stmt = $pdo->prepare("SELECT * FROM profissionais;");
             $stmt->execute();
             $profissional = new Profissional();
             $retorno = array();
             while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
                 $profissional->setId($rs->id);
-                $profissional->setNome(($rs->nome));
+                $profissional->setNome($rs->nome);
                 $profissional->setCnpj($rs->cnpj);
                 $profissional->setTelefone($rs->telefone);
                 $profissional->setServico($rs->servico);
-                $profissional->setPreco_hora($rs->preco_hora);
-
+                $profissional->setPrecoHora($rs->precohora);
+                $profissional->setEmail($rs->email);
+                $profissional->setSenha($rs->senha);
                 $retorno[] = clone $profissional;
             }
             return $retorno;
@@ -34,18 +35,19 @@ class ProfissionalDAO
     {
         $pdo = connectDb();
         try {
-            $stmt = $pdo->prepare("SELECT * FROM profissional WHERE id = :id;");
+            $stmt = $pdo->prepare("SELECT * FROM profissionais WHERE id = :id;");
             $stmt->bindValue(":id", $id);
             $stmt->execute();
             $profissional = new Profissional();
             while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
                 $profissional->setId($rs->id);
-                $profissional->setNome(($rs->nome));
-                $profissional->setCnpj($rs->cnpj);
+                $profissional->setNome($rs->nome);
+                $profissional->setCnpj($rs->cpf_cnpj);
                 $profissional->setTelefone($rs->telefone);
                 $profissional->setServico($rs->servico);
-                $profissional->setPreco_hora($rs->preco_hora);
-
+                $profissional->setPrecoHora($rs->precohora);
+                $profissional->setEmail($rs->email);
+                $profissional->setSenha($rs->senha);
             }
             return $profissional;
         } catch (PDOException $ex) {
@@ -54,36 +56,38 @@ class ProfissionalDAO
         }
     }
 
-    public function removeProfissional($id)
-    {
-        $pdo = connectDb();
-        $pdo->beginTransaction();
-        try {
-            $stmt = $pdo->prepare('DELETE FROM profissional WHERE id = :id');
-            $stmt->bindValue(":id", $id);
-            $stmt->execute();
-            if ($stmt->rowCount()) {
-                $pdo->commit();
-            }
-            return $stmt->rowCount();
-        } catch (PDOException $ex) {
-            echo "Erro ao excluir profissional: " . $ex->getMessage();
-            $pdo->rollBack();
-            die();
-        }
-    }
+    // public function removeCliente($id)
+    // {
+    //     $pdo = connectDb();
+    //     $pdo->beginTransaction();
+    //     try {
+    //         $stmt = $pdo->prepare('DELETE FROM clientes WHERE id = :id');
+    //         $stmt->bindValue(":id", $id);
+    //         $stmt->execute();
+    //         if ($stmt->rowCount()) {
+    //             $pdo->commit();
+    //         }
+    //         return $stmt->rowCount();
+    //     } catch (PDOException $ex) {
+    //         echo "Erro ao excluir cliente: " . $ex->getMessage();
+    //         $pdo->rollBack();
+    //         die();
+    //     }
+    // }
 
     public function inserirProfissional(Profissional $profissional)
     {
         $pdo = connectDb();
         $pdo->beginTransaction();
         try {
-            $stmt = $pdo->prepare("INSERT INTO profissional (nome, cnpj, telefone, servico, preco_hora) VALUES (:nome, :cnpj, :telefone, :servico, :preco_hora)");
+            $stmt = $pdo->prepare("INSERT INTO profissionais (nome, cnpj, telefone, servico, preco_hora, email, senha) VALUES (:nome, :cnpj, :tel, :servico, :preco_hora, :email, :senha)");
             $stmt->bindValue(":nome", $profissional->getNome());
             $stmt->bindValue(":cnpj", $profissional->getCnpj());
-            $stmt->bindValue(":telefone", $profissional->getTelefone());
+            $stmt->bindValue(":tel", $profissional->getTelefone());
             $stmt->bindValue(":servico", $profissional->getServico());
-            $stmt->bindValue(":preco_hora", $profissional->getPreco_hora());
+            $stmt->bindValue(":preco_hora", $profissional->getPrecoHora());
+            $stmt->bindValue(":email", $profissional->getEmail());
+            $stmt->bindValue(":senha", $profissional->getSenha());
             $stmt->execute();
             if ($stmt->rowCount()) {
                 $pdo->commit();
@@ -97,28 +101,26 @@ class ProfissionalDAO
         }
     }
 
-    public function atualizaProfissional(Profissional $profissional)
-    {
-        $pdo = connectDb();
-        $pdo->beginTransaction();
-        try {
-            $stmt = $pdo->prepare("UPDATE profissionais SET nome = :nome, cnpj = :cnpj, telefone = :telefone, servico = :servico, preco_hora = :preco_hora WHERE id = :id");
-            $stmt->bindValue(":nome", $profissional->getNome());
-            $stmt->bindValue(":cnpj", $profissional->getCnpj());
-            $stmt->bindValue(":telefone", $profissional->getTelefone());
-            $stmt->bindValue(":servico", $profissional->getServico());
-            $stmt->bindValue(":preco_hora", $profissional->getPreco_hora());
-            $stmt->bindValue(":id", $profissional->getId());
-            $stmt->execute();
-            if ($stmt->rowCount()) {
-                $pdo->commit();
-                return TRUE;
-            }
-            return FALSE;
-        } catch (PDOException $ex) {
-            $pdo->rollBack();
-            echo "Erro ao atualizar profissional: " . $ex->getMessage();
-            die();
-        }
-    }
+    // public function atualizaCliente(Cliente $cliente)
+    // {
+    //     $pdo = connectDb();
+    //     $pdo->beginTransaction();
+    //     try {
+    //         $stmt = $pdo->prepare("UPDATE clientes SET nome = :nome, cpf_cnpj = :cpf, telefone = :tel WHERE id = :id");
+    //         $stmt->bindValue(":nome", $cliente->getNome());
+    //         $stmt->bindValue(":cpf", $cliente->getCpfCnpj());
+    //         $stmt->bindValue(":tel", $cliente->getTelefone());
+    //         $stmt->bindValue(":id", $cliente->getId());
+    //         $stmt->execute();
+    //         if ($stmt->rowCount()) {
+    //             $pdo->commit();
+    //             return TRUE;
+    //         }
+    //         return FALSE;
+    //     } catch (PDOException $ex) {
+    //         $pdo->rollBack();
+    //         echo "Erro ao atualizar cliente: " . $ex->getMessage();
+    //         die();
+    //     }
+    // }
 }

@@ -6,17 +6,17 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/client
 
 $cliente = new Cliente();
 
-if (isset($_GET) && isset($_GET['key'])) {
+ if (isset($_GET) && isset($_GET['key'])) {
     $id = filter_input(INPUT_GET, 'key');
     $controller = new ClienteController();
-    $cliente = $controller->buscarPorId($id);
+    // $cliente = $controller->buscarPorId($id);
 }
 
 ?>
 
 <div class="container">
     <?php require_once('nav.php'); ?>
-    <h1>Cadastro de Clientes </h1>
+    <h1>Criar cadastro </h1>
 
     <form method="POST" action="../acoes/salvar_cliente.php">
         <div class="mb-3">
@@ -32,7 +32,14 @@ if (isset($_GET) && isset($_GET['key'])) {
             <label for="telefone" class="form-label">Telefone</label>
             <input type="tel" class="form-control" id="telefone" name="telefone" value="<?= $cliente->getTelefone() ?>">
         </div>
-        
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="<?= $cliente->getEmail() ?>">
+        </div>
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" value="<?= $cliente->getSenha() ?>">
+        </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 

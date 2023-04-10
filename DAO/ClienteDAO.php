@@ -18,6 +18,8 @@ class ClienteDAO
                 $cliente->setNome(($rs->nome));
                 $cliente->setCpfCnpj($rs->cpf_cnpj);
                 $cliente->setTelefone($rs->telefone);
+                $cliente->setEmail($rs->email);
+                $cliente->setSenha($rs->senha);
                 $retorno[] = clone $cliente;
             }
             return $retorno;
@@ -40,6 +42,8 @@ class ClienteDAO
                 $cliente->setNome(($rs->nome));
                 $cliente->setCpfCnpj($rs->cpf_cnpj);
                 $cliente->setTelefone($rs->telefone);
+                $cliente->setEmail($rs->email);
+                $cliente->setSenha($rs->senha);
             }
             return $cliente;
         } catch (PDOException $ex) {
@@ -48,34 +52,36 @@ class ClienteDAO
         }
     }
 
-    public function removeCliente($id)
-    {
-        $pdo = connectDb();
-        $pdo->beginTransaction();
-        try {
-            $stmt = $pdo->prepare('DELETE FROM clientes WHERE id = :id');
-            $stmt->bindValue(":id", $id);
-            $stmt->execute();
-            if ($stmt->rowCount()) {
-                $pdo->commit();
-            }
-            return $stmt->rowCount();
-        } catch (PDOException $ex) {
-            echo "Erro ao excluir cliente: " . $ex->getMessage();
-            $pdo->rollBack();
-            die();
-        }
-    }
+    // public function removeCliente($id)
+    // {
+    //     $pdo = connectDb();
+    //     $pdo->beginTransaction();
+    //     try {
+    //         $stmt = $pdo->prepare('DELETE FROM clientes WHERE id = :id');
+    //         $stmt->bindValue(":id", $id);
+    //         $stmt->execute();
+    //         if ($stmt->rowCount()) {
+    //             $pdo->commit();
+    //         }
+    //         return $stmt->rowCount();
+    //     } catch (PDOException $ex) {
+    //         echo "Erro ao excluir cliente: " . $ex->getMessage();
+    //         $pdo->rollBack();
+    //         die();
+    //     }
+    // }
 
     public function inserirCliente(Cliente $cliente)
     {
         $pdo = connectDb();
         $pdo->beginTransaction();
         try {
-            $stmt = $pdo->prepare("INSERT INTO clientes (nome, cpf_cnpj, telefone) VALUES (:nome, :cpf, :tel)");
+            $stmt = $pdo->prepare("INSERT INTO clientes (nome, cpf_cnpj, telefone, email, senha) VALUES (:nome, :cpf, :tel, :email, :senha)");
             $stmt->bindValue(":nome", $cliente->getNome());
             $stmt->bindValue(":cpf", $cliente->getCpfCnpj());
             $stmt->bindValue(":tel", $cliente->getTelefone());
+            $stmt->bindValue(":email", $cliente->getEmail());
+            $stmt->bindValue(":senha", $cliente->getSenha());
             $stmt->execute();
             if ($stmt->rowCount()) {
                 $pdo->commit();
@@ -89,26 +95,26 @@ class ClienteDAO
         }
     }
 
-    public function atualizaCliente(Cliente $cliente)
-    {
-        $pdo = connectDb();
-        $pdo->beginTransaction();
-        try {
-            $stmt = $pdo->prepare("UPDATE clientes SET nome = :nome, cpf_cnpj = :cpf, telefone = :tel WHERE id = :id");
-            $stmt->bindValue(":nome", $cliente->getNome());
-            $stmt->bindValue(":cpf", $cliente->getCpfCnpj());
-            $stmt->bindValue(":tel", $cliente->getTelefone());
-            $stmt->bindValue(":id", $cliente->getId());
-            $stmt->execute();
-            if ($stmt->rowCount()) {
-                $pdo->commit();
-                return TRUE;
-            }
-            return FALSE;
-        } catch (PDOException $ex) {
-            $pdo->rollBack();
-            echo "Erro ao atualizar cliente: " . $ex->getMessage();
-            die();
-        }
-    }
+    // public function atualizaCliente(Cliente $cliente)
+    // {
+    //     $pdo = connectDb();
+    //     $pdo->beginTransaction();
+    //     try {
+    //         $stmt = $pdo->prepare("UPDATE clientes SET nome = :nome, cpf_cnpj = :cpf, telefone = :tel WHERE id = :id");
+    //         $stmt->bindValue(":nome", $cliente->getNome());
+    //         $stmt->bindValue(":cpf", $cliente->getCpfCnpj());
+    //         $stmt->bindValue(":tel", $cliente->getTelefone());
+    //         $stmt->bindValue(":id", $cliente->getId());
+    //         $stmt->execute();
+    //         if ($stmt->rowCount()) {
+    //             $pdo->commit();
+    //             return TRUE;
+    //         }
+    //         return FALSE;
+    //     } catch (PDOException $ex) {
+    //         $pdo->rollBack();
+    //         echo "Erro ao atualizar cliente: " . $ex->getMessage();
+    //         die();
+    //     }
+    // }
 }

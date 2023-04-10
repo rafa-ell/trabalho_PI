@@ -1,71 +1,153 @@
 <?php
 
 require_once('./header.php');
-require_once(str_replace('\\', '/', dirname(__FILE__, 2)) .'/acoes/verifica_sessao.php');
-require_once(str_replace('\\', '/', dirname(__FILE__, 2)) .'/controllers/cliente.controller.php');
-
-$controller = new ClienteController();
-$clientes = $controller->buscarTodos();
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/acoes/verifica_sessao.php');
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/controllers/cliente.controller.php');
 
 ?>
-<div class="container">
-    <?php require_once('nav.php'); ?>
 
-    <h1>Lista de Clientes</h1>
-    <a class="btn btn-primary" href="cad_cliente.php">Novo Cliente</a>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">CPF/CNPJ</th>
-                <th scope="col">Telefone</th>
-                <th scope="col">Email</th>
-                <th scope="col">Senha</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($clientes as $c) :
-            ?>
-                <tr>
-                    <td><?= $c->getId(); ?></td>
-                    <td><?= $c->getNome(); ?></td>
-                    <td><?= $c->getCpfCnpj(); ?></td>
-                    <td><?= $c->getTelefone(); ?></td>
-                    <td><?= $c->getEmail(); ?></td>
-                    <td><?= $c->getSenha(); ?></td>
-                    <td>
-                        <a class="btn btn-light" href="cad_cliente.php?key=<?=$c->getId()?>">Editar</a>
-                        <a class="btn btn-link" href="../acoes/excluir_cliente.php?key=<?=$c->getId()?>">Excluir</a>
-                    </td>
-                </tr>
-            <?php
-            endforeach;
-            ?>
-        </tbody>
-    </table>
+<?php require_once('nav.php'); ?>
+
+
+<div class="conteiner">
+
+  <div class="logo">
+    <a href="home.php"><img class="img_logo" src="../assets/img/building-materials-logo-design-template-b6e82dd63b207c765081203db265d02a_screen.jpg" alt=""></a>
+  </div>
+  <div class="header">
+
+    <div class="busca_conteiner">
+
+    </div>
+
+
+    <div>
+      <h3 class="texto_p">Escolha uma categoria</h3>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <ul>
+      <li>
+        <a href="">
+          <div class="img">
+            <img src="../assets/img/eletricista.jpg" alt="">
+          </div>
+          <div class="desc">
+            <h4>Serviços elétricos</h4>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img">
+            <img src="../assets/img/hidraulico.jpg" alt="">
+          </div>
+          <div class="desc">
+            <h4>Serviços hidráulicos</h4>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img">
+            <img src="../assets/img/ar.jpg" alt="">
+          </div>
+          <div class="desc">
+            <h4>Ar-condicionado</h4>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img">
+            <img src="../assets/img/dedetizacao.jpg" alt="">
+          </div>
+          <div class="desc">
+            <h4>Dedetização</h4>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img">
+            <img src="../assets/img/frete.jpg" alt="">
+          </div>
+          <div class="desc">  
+            <h4>Fretes</h4>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img">
+            <img src="../assets/img/image.jpg" alt="">
+          </div>
+          <div class="desc">
+            <h4>Reparos</h4>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img">
+            <img src="../assets/img/pintura.jpg" alt="">
+          </div>
+          <div class="desc">
+            <h4>Pintor</h4>
+          </div>
+        </a>
+      </li>
+
+    </ul>
+
+   
+    <!-- <div class="servicos">
+      <img src="../img/plumber.png" alt="">
+    </div>
+    <div class="servicos">
+        <img src="../img/plumber2.png" alt="">
+    </div>
+    <div class="servicos">
+        <a href=""><img src="../img/mechanic.png" alt=""></a>
+    </div>
+    <div class="servicos">
+        <img src="../img/cleaning-staff.png" alt="">
+    </div>
+    <div class="servicos">
+        
+    </div>
+    <div class="servicos">
+        
+    </div> -->
+
     <?php
     if (isset($_SESSION) && isset($_SESSION['sucesso']) && $_SESSION['sucesso'] == TRUE) {
     ?>
-        <div class="alert alert-success" role="alert">
-            <?= $_SESSION['mensagem']; ?>
-        </div>
+      <div class="alert alert-success" role="alert">
+        <?= $_SESSION['mensagem']; ?>
+      </div>
     <?php
     }
     if (isset($_SESSION) && isset($_SESSION['sucesso']) && $_SESSION['sucesso'] == false) {
     ?>
-        <div class="alert alert-danger" role="alert">
-            <?= $_SESSION['mensagem']; ?>
-        </div>
+      <div class="alert alert-danger" role="alert">
+        <?= $_SESSION['mensagem']; ?>
+      </div>
     <?php
     }
     unset($_SESSION['sucesso'], $_SESSION['mensagem']);
     ?>
 
-
+  </div>
 </div>
-
 <?php
+
 require_once('./footer.php');

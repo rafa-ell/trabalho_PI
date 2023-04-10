@@ -1,8 +1,8 @@
 <?php
-require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/DAO/ClienteDAO.php");
-require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/cliente.class.php");
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/DAO/ProfissionalDAO.php");
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/profissional.class.php");
 
-class ClienteController
+class ProfissionalController
 {
 
     // public function buscarTodos()
@@ -17,10 +17,10 @@ class ClienteController
     //     return $dao->buscarUm($id);
     // }
 
-    public function criarCliente(Cliente $cliente)
+    public function criarProfissional(Profissional $profissional)
     {
-        $dao = new ClienteDAO();
-        return $dao->inserirCliente($cliente);
+        $dao = new ProfissionalDAO();
+        return $dao->inserirProfissional($profissional);
     }
 
     // public function atualizarCliente(Cliente $cliente) {
