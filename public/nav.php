@@ -10,7 +10,7 @@
                     <a class="nav-link active" aria-current="page" href="./home_produto.php">Serviços</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Perfil</a>
+                    <a class="nav-link" href="./perfil.php">Perfil</a>
                 </li>
                 <li>
                     <a class="dropdown-item" href="logoff.php">Sair</a>

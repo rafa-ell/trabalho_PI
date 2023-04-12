@@ -11,11 +11,11 @@ class ClienteController
     //     return $dao->buscarTodos();
     // }
 
-    // public function buscarPorId($id)
-    // {
-    //     $dao = new ClienteDAO();
-    //     return $dao->buscarUm($id);
-    // }
+    public function buscarPorId($id)
+    {
+        $dao = new ClienteDAO();
+        return $dao->buscarUm($id);
+    }
 
     public function criarCliente(Cliente $cliente)
     {

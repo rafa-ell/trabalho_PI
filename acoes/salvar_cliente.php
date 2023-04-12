@@ -4,6 +4,8 @@ session_start();
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/acoes/verifica_sessao.php');
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/cliente.class.php");
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/cliente.controller.php");
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/DAO/LoginDAO.php");
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/login.class.php");
 
 $cliente = new Cliente();
 
@@ -41,6 +43,13 @@ if (isset($_POST) && isset($_POST['id'])) {
         $dao = new ClienteController();
         $resultado = $dao->criarCliente($cliente);
         if ($resultado) {
+            $login= new Login();
+            $login->setEmail($email);
+            $login->setSenha($senha);
+            $login->setAtivo(true);
+            $login->setTipo("user");
+            $dao = new LoginDAO();
+            $dao-> inserirLogin($login);
             $_SESSION['mensagem'] = "Criado com sucesso";
             $_SESSION['sucesso'] = true;
         } else {

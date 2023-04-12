@@ -20,6 +20,7 @@ class LoginDAO
                     $obj->setEmail($rs->email);
                     $obj->setSenha($rs->senha);
                     $obj->setAtivo($rs->ativo);
+                    $obj->setTipo($rs->tipo);
                     $result = clone $obj;
                 }
                 return $result;
@@ -28,6 +29,30 @@ class LoginDAO
             }
         } catch (PDOException $ex) {
             echo "Erro: " + $ex->getMessage();
+            die();
+        }
+    }
+
+    public function inserirLogin(Login $login)
+    {
+        $pdo = connectDb();
+        $pdo->beginTransaction();
+        try {
+            $stmt = $pdo->prepare("INSERT INTO `login` (email, senha, tipo, ativo) VALUES (:email, :senha, :tipo, :ativo)");
+            $stmt->bindValue(":email", $login->getEmail());
+            $stmt->bindValue(":senha", $login->getSenha());
+            $stmt->bindValue(":tipo", $login->getTipo());
+            $stmt->bindValue(":ativo", $login->getAtivo());
+            
+            $stmt->execute();
+            if ($stmt->rowCount()) {
+                $pdo->commit();
+                return TRUE;
+            }
+            return FALSE;
+        } catch (PDOException $ex) {
+            echo "Erro ao inserir cliente: " . $ex->getMessage();
+            $pdo->rollBack();
             die();
         }
     }
