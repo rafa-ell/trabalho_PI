@@ -23,13 +23,14 @@ class ClienteController
         return $dao->inserirCliente($cliente);
     }
 
-    // public function atualizarCliente(Cliente $cliente) {
-    //     $dao = new ClienteDAO();
-    //     return $dao->atualizaCliente($cliente);
-    // }
+    public function atualizarCliente(Cliente $cliente) {
+        $dao = new ClienteDAO();
+        return $dao->atualizaCliente($cliente);
+    }
 
-    // public function excluirCliente($id) {
-    //     $dao = new ClienteDAO();
-    //     return $dao->removeCliente($id);
-    // }
+//     public function excluirCliente($id) {
+//         $dao = new ClienteDAO();
+//         return $dao->removeCliente($id);
+//     }
+// 
 }
