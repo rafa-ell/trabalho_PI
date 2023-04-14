@@ -11,11 +11,12 @@ class ClienteController
     //     return $dao->buscarTodos();
     // }
 
-    // public function buscarPorId($id)
-    // {
-    //     $dao = new ClienteDAO();
-    //     return $dao->buscarUm($id);
-    // }
+    public function buscarPorId($id)
+    {
+        echo $id;
+        $dao = new ClienteDAO();
+        return $dao->buscarUm($id);
+    }
 
     public function criarCliente(Cliente $cliente)
     {
@@ -23,13 +24,14 @@ class ClienteController
         return $dao->inserirCliente($cliente);
     }
 
-    // public function atualizarCliente(Cliente $cliente) {
-    //     $dao = new ClienteDAO();
-    //     return $dao->atualizaCliente($cliente);
-    // }
+    public function atualizarCliente(Cliente $cliente) {
+        $dao = new ClienteDAO();
+        return $dao->atualizaCliente($cliente);
+    }
 
-    // public function excluirCliente($id) {
-    //     $dao = new ClienteDAO();
-    //     return $dao->removeCliente($id);
-    // }
+//     public function excluirCliente($id) {
+//         $dao = new ClienteDAO();
+//         return $dao->removeCliente($id);
+//     }
+// 
 }

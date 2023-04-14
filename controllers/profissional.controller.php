@@ -11,11 +11,11 @@ class ProfissionalController
          return $dao->buscarTodos();
      }
 
-    // public function buscarPorId($id)
-    // {
-    //     $dao = new ClienteDAO();
-    //     return $dao->buscarUm($id);
-    // }
+    public function buscarServico($servico)
+    {
+        $dao = new ProfissionalDAO();
+        return $dao->buscarServico($servico);
+    }
 
     public function criarProfissional(Profissional $profissional)
     {

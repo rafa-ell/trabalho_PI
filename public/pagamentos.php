@@ -34,7 +34,7 @@ $pag = $controller->buscarTodos();
                     <td><?= $p->getNome(); ?></td>
                     
                     <td>
-                        <a class="btn btn-light" href="cad_pagamento.php?key=<?=$p->getId()?>">Editar</a>
+                        <!-- <a class="btn btn-light" href="cad_pagamento.php?key=<?=$p->getId()?>">Editar</a> -->
                         <a class="btn btn-link" href="../acoes/excluir_cartao.php?key=<?=$p->getId()?>">Excluir</a>
                     </td>
                 </tr>

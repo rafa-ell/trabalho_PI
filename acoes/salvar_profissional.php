@@ -4,6 +4,8 @@ session_start();
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/acoes/verifica_sessao.php');
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/profissional.class.php");
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/profissional.controller.php");
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/DAO/LoginDAO.php");
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/login.class.php");
 
 $profissional = new Profissional();
 
@@ -19,7 +21,7 @@ if (isset($_POST) && isset($_POST['id'])) {
    
 
     if (empty($nome) || empty($cnpj)) {
-        $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ1";
+        $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ";
         $_SESSION['sucesso'] = false;
         header('Location:../public/cad_profissional.php?key=' . $id);
         die();

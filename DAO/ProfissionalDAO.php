@@ -14,7 +14,7 @@ class ProfissionalDAO
             $profissional = new Profissional();
             $retorno = array();
             while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
-                $profissional->setId($rs->id);
+                // $profissional->setId($rs->id);
                 $profissional->setNome($rs->nome);
                 $profissional->setCnpj($rs->cnpj);
                 $profissional->setTelefone($rs->telefone);
@@ -31,25 +31,26 @@ class ProfissionalDAO
         }
     }
 
-    public function buscarUm($id)
+    public function buscarServico($servico)
     {
         $pdo = connectDb();
         try {
-            $stmt = $pdo->prepare("SELECT * FROM profissionais WHERE id = :id;");
-            $stmt->bindValue(":id", $id);
+            $stmt = $pdo->prepare("SELECT * FROM profissionais WHERE servico = :servico;");
+            $stmt->bindValue(":servico", $servico);
             $stmt->execute();
             $profissional = new Profissional();
+            $retorno = array();
             while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
-                $profissional->setId($rs->id);
+                // $profissional->setId($rs->id);
                 $profissional->setNome($rs->nome);
-                $profissional->setCnpj($rs->cpf_cnpj);
+                // $profissional->setCnpj($rs->cnpj);
                 $profissional->setTelefone($rs->telefone);
                 $profissional->setServico($rs->servico);
                 $profissional->setPreco_hora($rs->preco_hora);
                 $profissional->setEmail($rs->email);
                 $profissional->setSenha($rs->senha);
             }
-            return $profissional;
+            return $retorno;
         } catch (PDOException $ex) {
             echo "Erro ao buscar profissional: " . $ex->getMessage();
             die();
