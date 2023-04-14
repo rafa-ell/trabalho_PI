@@ -30,6 +30,7 @@ if (isset($_POST) && isset($_POST['id']) && !empty($_POST['id'])) {
     $cliente->setCpfCnpj($cpfcnpj);
     $cliente->setTelefone($telefone);
     $cliente->setEmail($email);
+    
 
     $controller = new ClienteController();
     $resultado = $controller->atualizarCliente($cliente);
@@ -53,7 +54,7 @@ if (isset($_POST) && isset($_POST['id']) && !empty($_POST['id'])) {
         $_SESSION['mensagem'] = "Obrigatório informar Nome e CPF/CNPJ";
         $_SESSION['sucesso'] = false;
         // header('Location:../public/cad_cliente.php?key=' . $id);
-        echo 'rwerew';
+        // echo 'rwerew';
         die();
     }
 
@@ -61,7 +62,6 @@ if (isset($_POST) && isset($_POST['id']) && !empty($_POST['id'])) {
     $cliente->setCpfCnpj($cpfcnpj);
     $cliente->setTelefone($telefone);
     $cliente->setEmail($email);
-    $cliente->setSenha($senha);
 
     $dao = new ClienteController();
     $resultado = $dao->criarCliente($cliente);

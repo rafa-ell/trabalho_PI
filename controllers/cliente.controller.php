@@ -13,6 +13,7 @@ class ClienteController
 
     public function buscarPorId($id)
     {
+        echo $id;
         $dao = new ClienteDAO();
         return $dao->buscarUm($id);
     }

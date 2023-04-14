@@ -56,4 +56,26 @@ class LoginDAO
             die();
         }
     }
+
+    public function alterarSenha(Login $login)
+    {
+        $pdo = connectDb();
+        $pdo->beginTransaction();
+        try {
+            $stmt = $pdo->prepare("UPDATE  login SET senha = :senha WHERE id = :id");
+            $stmt->bindValue(":id", $login->getId());
+            $stmt->bindValue(":senha", $login->getSenha());
+            
+            $stmt->execute();
+            if ($stmt->rowCount()) {
+                $pdo->commit();
+                return TRUE;
+            }
+            return FALSE;
+        } catch (PDOException $ex) {
+            echo "Erro ao alterar senha: " . $ex->getMessage();
+            $pdo->rollBack();
+            die();
+        }
+    }
 }
