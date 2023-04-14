@@ -19,7 +19,7 @@ class ProfissionalDAO
                 $profissional->setCnpj($rs->cnpj);
                 $profissional->setTelefone($rs->telefone);
                 $profissional->setServico($rs->servico);
-                $profissional->setPrecoHora($rs->precohora);
+                $profissional->setPreco_hora($rs->preco_hora);
                 $profissional->setEmail($rs->email);
                 $profissional->setSenha($rs->senha);
                 $retorno[] = clone $profissional;
@@ -45,7 +45,7 @@ class ProfissionalDAO
                 $profissional->setCnpj($rs->cpf_cnpj);
                 $profissional->setTelefone($rs->telefone);
                 $profissional->setServico($rs->servico);
-                $profissional->setPrecoHora($rs->precohora);
+                $profissional->setPreco_hora($rs->preco_hora);
                 $profissional->setEmail($rs->email);
                 $profissional->setSenha($rs->senha);
             }
@@ -85,7 +85,7 @@ class ProfissionalDAO
             $stmt->bindValue(":cnpj", $profissional->getCnpj());
             $stmt->bindValue(":tel", $profissional->getTelefone());
             $stmt->bindValue(":servico", $profissional->getServico());
-            $stmt->bindValue(":preco_hora", $profissional->getPrecoHora());
+            $stmt->bindValue(":preco_hora", $profissional->getPreco_hora());
             $stmt->bindValue(":email", $profissional->getEmail());
             $stmt->bindValue(":senha", $profissional->getSenha());
             $stmt->execute();

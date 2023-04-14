@@ -40,10 +40,7 @@ $controller = new ProfissionalController();
                         <a class="btn btn-light" href="cad_profissional.php?key=<?= $prof->getId() ?>">Editar</a>
                         <a class="btn btn-link" href="../acoes/excluir_profissional.php?key=<?= $prof->getId() ?>">Excluir</a>
                     </td>
-                    <td>
-                        <a class="btn btn-light" href="cad_profissional.php?key=<?= $prof->getId() ?>">Editar</a>
-                        <a class="btn btn-link" href="../acoes/excluir_profissional.php?key=<?= $prof->getId() ?>">Excluir</a>
-                    </td>
+                    
                 </tr>
             <?php
             endforeach;

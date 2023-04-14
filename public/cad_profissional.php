@@ -37,8 +37,8 @@ $profissional = new Profissional();
             <input type="text" class="form-control" id="servico" name="servico" value="<?= $profissional->getServico() ?>">
         </div>
         <div class="mb-3">
-            <label for="precohora" class="form-label">Preço por hora</label>
-            <input type="number" min="0.00" step="0.01" class="form-control" id="precohora" name="precohora" value="<?= $profissional->getPrecoHora() ?>">
+            <label for="preco_hora" class="form-label">Preço por hora</label>
+            <input type="number" min="0.00" step="0.01" class="form-control" id="preco_hora" name="preco_hora" value="<?= $profissional->getPreco_hora() ?>">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
