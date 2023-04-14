@@ -9,19 +9,7 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/controllers/client
 <?php require_once('nav.php'); ?>
 
 
-<div class="conteiner">
-
-  <div class="logo">
-    <a href="home.php"><img class="img_logo" src="../assets/img/building-materials-logo-design-template-b6e82dd63b207c765081203db265d02a_screen.jpg" alt=""></a>
-  </div>
-  <div class="header">
-
-    <div class="busca_conteiner">
-
-    </div>
-
-
-    <div>
+<div class="titulo">
       <h3 class="texto_p">Escolha uma categoria</h3>
     </div>
   </div>
@@ -29,77 +17,98 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/controllers/client
   <div class="content">
 
     <ul>
-      <li>
-        <a href="">
+      <li class="categoria">
+        <a href="profissionais.php?servico=Eletricista">
           <div class="img">
             <img src="../assets/img/eletricista.jpg" alt="">
           </div>
+
+          <!-- <hr style="margin: 0px;"> -->
+
           <div class="desc">
             <h4>Serviços elétricos</h4>
           </div>
         </a>
       </li>
 
-      <li>
+      <li class="categoria">
         <a href="">
           <div class="img">
             <img src="../assets/img/hidraulico.jpg" alt="">
           </div>
+
+          <!-- <hr style="margin: 0px;"> -->
+
           <div class="desc">
             <h4>Serviços hidráulicos</h4>
           </div>
         </a>
       </li>
 
-      <li>
+      <li class="categoria">
         <a href="">
           <div class="img">
             <img src="../assets/img/ar.jpg" alt="">
           </div>
+
+          <!-- <hr style="margin: 0px;"> -->
+
           <div class="desc">
             <h4>Ar-condicionado</h4>
           </div>
         </a>
       </li>
 
-      <li>
+      <li class="categoria">
         <a href="">
           <div class="img">
             <img src="../assets/img/dedetizacao.jpg" alt="">
           </div>
+
+          <!-- <hr style="margin: 0px;"> -->
+
           <div class="desc">
             <h4>Dedetização</h4>
           </div>
         </a>
       </li>
 
-      <li>
+      <li class="categoria">
         <a href="">
           <div class="img">
             <img src="../assets/img/frete.jpg" alt="">
           </div>
-          <div class="desc">  
+
+          <!-- <hr style="margin: 0px;"> -->
+
+          <div class="desc">
             <h4>Fretes</h4>
           </div>
         </a>
       </li>
 
-      <li>
+      <li class="categoria">
         <a href="">
           <div class="img">
             <img src="../assets/img/image.jpg" alt="">
           </div>
+
+          <!-- <hr style="margin: 0px;"> -->
+
           <div class="desc">
             <h4>Reparos</h4>
           </div>
         </a>
       </li>
 
-      <li>
+      <li class="categoria">
         <a href="">
           <div class="img">
             <img src="../assets/img/pintura.jpg" alt="">
           </div>
+
+          <!-- <hr style="margin: 0px;"> -->
+
           <div class="desc">
             <h4>Pintor</h4>
           </div>
@@ -108,7 +117,7 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/controllers/client
 
     </ul>
 
-   
+
     <!-- <div class="servicos">
       <img src="../img/plumber.png" alt="">
     </div>

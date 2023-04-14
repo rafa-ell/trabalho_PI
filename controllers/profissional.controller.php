@@ -5,17 +5,17 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/profission
 class ProfissionalController
 {
 
-    // public function buscarTodos()
-    // {
-    //     $dao = new ClienteDAO();
-    //     return $dao->buscarTodos();
-    // }
+    public function buscarTodos()
+    {
+        $dao = new ProfissionalDAO();
+        return $dao->buscarTodos();
+    }
 
-    // public function buscarPorId($id)
-    // {
-    //     $dao = new ClienteDAO();
-    //     return $dao->buscarUm($id);
-    // }
+    public function buscarServico($servico)
+    {
+        $dao = new ProfissionalDAO();
+        return $dao->buscarServico($servico);
+    }
 
     public function criarProfissional(Profissional $profissional)
     {

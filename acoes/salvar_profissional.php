@@ -19,7 +19,7 @@ if (isset($_POST) && isset($_POST['id'])) {
    
 
     if (empty($nome) || empty($cnpj)) {
-        $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ1";
+        $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ";
         $_SESSION['sucesso'] = false;
         header('Location:../public/cad_profissional.php?key=' . $id);
         die();

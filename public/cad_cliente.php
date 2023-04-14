@@ -14,8 +14,10 @@ $cliente = new Cliente();
 
 ?>
 
+<?php require_once('nav.php'); ?>
+
 <div class="container">
-    <?php require_once('nav.php'); ?>
+    
     <h1>Criar cadastro </h1>
 
     <form method="POST" action="../acoes/salvar_cliente.php">
