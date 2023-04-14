@@ -6,7 +6,7 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/profis
 
 $profissional = new Profissional();
 
- if (isset($_GET) && isset($_GET['key'])) {
+if (isset($_GET) && isset($_GET['key'])) {
     $id = filter_input(INPUT_GET, 'key');
     $controller = new ProfissionalController();
     // $cliente = $controller->buscarPorId($id);
@@ -14,8 +14,11 @@ $profissional = new Profissional();
 
 ?>
 
+<?php require_once('nav.php'); ?>
+
 <div class="container">
-    <?php require_once('nav.php'); ?>
+    
+    
     <h1>Criar cadastro </h1>
 
     <form method="POST" action="../acoes/salvar_profissional.php">
@@ -32,14 +35,28 @@ $profissional = new Profissional();
             <label for="telefone" class="form-label">Telefone</label>
             <input type="tel" class="form-control" id="telefone" name="telefone" value="<?= $profissional->getTelefone() ?>">
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <label for="servico" class="form-label">Serviço</label>
             <input type="text" class="form-control" id="servico" name="servico" value="<?= $profissional->getServico() ?>">
-        </div>
+        </div> -->
         <div class="mb-3">
             <label for="precohora" class="form-label">Preço por hora</label>
             <input type="number" min="0.00" step="0.01" class="form-control" id="precohora" name="precohora" value="<?= $profissional->getPrecoHora() ?>">
         </div>
+
+        <label for="">Categoria de serviço:</label>
+        <br>
+        <select name="" id="" form="" style="width: 190px; margin-bottom: 20px; margin-top: 20px;">
+            <option value=""></option>
+            <option value="">Elétrico</option>
+            <option value="">Hidráulico</option>
+            <option value="">Ar-condicionado</option>
+            <option value="">Dedetização</option>
+            <option value="">Fretes</option>
+            <option value="">Reparos</option>
+            <option value="">Pintura</option>
+        </select>
+
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="<?= $profissional->getEmail() ?>">

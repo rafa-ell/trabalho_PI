@@ -14,8 +14,10 @@ if (isset($_GET) && isset($_GET['key'])) {
 
 ?>
 
+<?php require_once('nav.php'); ?>
+
 <div class="container">
-    <?php require_once('nav.php'); ?>
+    
     <h1>Cadastro de cartão </h1>
 
     <form method="POST" action="../acoes/salvar_cartao.php">
