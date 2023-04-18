@@ -9,4 +9,15 @@ class OrcamentoController
         $dao = new OrcamentoDAO();
         return $dao->inserirOrcamento($orcamento);
     }
+
+    public function buscarTodos()
+    {
+        $dao = new OrcamentoDAO();
+        return $dao->buscarTodos();
+    }
+
+    public function excluirOrcamento($id) {
+        $dao = new OrcamentoDAO();
+        return $dao->removeOrcamento($id);
+    }
 }
