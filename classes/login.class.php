@@ -4,6 +4,7 @@ class Login {
     private $id;
     private $email;
     private $senha;
+    private $tipo;
     private $ativo;
 
     public function getId() {
@@ -36,5 +37,13 @@ class Login {
 
     public function setAtivo($ativo) {
         $this->ativo = $ativo;
+    }
+
+    public function getTipo() {
+        return $this->tipo;
+    }
+
+    public function setTipo($tipo) {
+        $this->tipo = $tipo;
     }
 }

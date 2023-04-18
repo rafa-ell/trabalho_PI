@@ -4,6 +4,8 @@ session_start();
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/acoes/verifica_sessao.php');
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/profissional.class.php");
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/profissional.controller.php");
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/DAO/LoginDAO.php");
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/login.class.php");
 
 $profissional = new Profissional();
 
@@ -40,7 +42,7 @@ if (isset($_POST) && isset($_POST['id'])) {
         $profissional->setCnpj($cnpj);
         $profissional->setTelefone($telefone);
         $profissional->setServico($servico);
-        $profissional->setPrecoHora($preco_hora);
+        $profissional->setPreco_hora($preco_hora);
         $profissional->setEmail($email);
         $profissional->setSenha($senha);
 

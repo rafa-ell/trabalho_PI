@@ -1,4 +1,5 @@
 <?php
+
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/config/functions.php');
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/classes/pagamento.class.php');
 
@@ -9,7 +10,8 @@ class PagamentoDAO
     {
         $pdo = connectDb();
         try {
-            $stmt = $pdo->prepare("SELECT * FROM pagamentos WHERE id;");
+            $stmt = $pdo->prepare("SELECT * FROM pagamentos WHERE id_cliente = :id_cliente;");
+            $stmt->bindValue(":id_cliente", $_SESSION['usuario_id']);
             $stmt->execute();
             $pag = new Pagamento();
             $retorno = array();
@@ -73,12 +75,14 @@ class PagamentoDAO
         $pdo = connectDb();
         $pdo->beginTransaction();
         try {
-            $stmt = $pdo->prepare("INSERT INTO pagamentos (num_cartao, nome, validade, cod_seg, cpf) VALUES (:num_cartao, :nome, :validade, :cod_seg, :cpf)");
+            $stmt = $pdo->prepare("INSERT INTO pagamentos (num_cartao, nome, validade, cod_seg, cpf, id_cliente) VALUES (:num_cartao, :nome, :validade, :cod_seg, :cpf, :id_cliente )");
             $stmt->bindValue(":num_cartao", $pag->getNum_cartao());
             $stmt->bindValue(":nome", $pag->getNome());
             $stmt->bindValue(":validade", $pag->getValidade());
             $stmt->bindValue(":cod_seg", $pag->getCod_seg());
             $stmt->bindValue(":cpf", $pag->getCpf());
+            $stmt->bindValue(":id_cliente",$_SESSION['usuario_id']) ;
+
 
             $stmt->execute();
             if ($stmt->rowCount()) {

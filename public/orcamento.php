@@ -24,6 +24,18 @@ $orcamento = new Orcamento();
 
     <form method="POST" action="../acoes/salvar_orcamento.php">
       
+    <!-- <label for="">Categoria de serviço:</label>
+        <br> -->
+        <!-- <select name="" id="" form="" style="width: 190px; margin-bottom: 20px; margin-top: 20px;">
+            <option value=""></option>
+            <option value="">Elétrico</option>
+            <option value="">Hidráulico</option>
+            <option value="">Ar-condicionado</option>
+            <option value="">Dedetização</option>
+            <option value="">Fretes</option>
+            <option value="">Reparos</option>
+            <option value="">Pintura</option>
+        </select> -->
         <div class="mb-3">
             <label for="endereco" class="form-label">Endereço</label>
             <input type="text" class="form-control" id="endereco" name="endereco" value="<?= $orcamento->getEndereco() ?>">

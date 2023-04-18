@@ -15,7 +15,7 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/controllers/perfil
         <a href="./cad_cliente.php">Editar Perfil</a>
     </div>
     <div class="botoes">
-        <a class="btn btn-primary" href=".php">Pedidos</a>
+        <a class="btn btn-primary" href="lista_orcamento.php">Orçamentos</a>
         
         <?php
         if (isset($_SESSION) && isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'user') {

@@ -2,17 +2,16 @@
 
 require_once('./header.php');
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) .'/acoes/verifica_sessao.php');
-require_once(str_replace('\\', '/', dirname(__FILE__, 2)) .'/controllers/pagamento.controller.php');
+require_once(str_replace('\\', '/', dirname(__FILE__, 2)) .'/controllers/orcamento.controller.php');
 
-$controller = new PagamentoController();
-$pag = $controller->buscarTodos();
+$controller = new OrcamentoController();
+$orcamento = $controller->buscarTodos();
 
 ?>
 <div class="container">
     <?php require_once('nav.php'); ?>
 
-    <h1>Lista de cartões</h1>
-    <a class="btn btn-primary" href="cad_pagamento.php">Adicionar Cartão</a>
+    <h1>Lista de Orçamentos</h1>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -27,15 +26,16 @@ $pag = $controller->buscarTodos();
         </thead>
         <tbody>
             <?php
-            foreach ($pag as $p) :
+            foreach ($orcamento as $orc) :
             ?>
                 <tr>
-                    <td><?= $p->getId(); ?></td>
-                    <td><?= $p->getNome(); ?></td>
+                    <td><?= $orc->getId(); ?></td>
+                    <td><?= $orc->getEndereco(); ?></td>
+                    <td><?= $orc->getDescricao(); ?></td>
                     
                     <td>
-                        <!-- <a class="btn btn-light" href="cad_pagamento.php?key=<?=$p->getId()?>">Editar</a> -->
-                        <a class="btn btn-link" href="../acoes/excluir_cartao.php?key=<?=$p->getId()?>">Excluir</a>
+                        <!-- <a class="btn btn-light" href="cad_pagamento.php?key=<?=$orc->getId()?>">Editar</a> -->
+                        <a class="btn btn-link" href="../acoes/excluir_orcamento.php?key=<?=$orc->getId()?>">Excluir</a>
                     </td>
                 </tr>
             <?php

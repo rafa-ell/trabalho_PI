@@ -21,6 +21,8 @@ if (isset($_POST)) {
 
     if ($login && $senha == $login->getSenha() && $login->getAtivo() == true) {
         $_SESSION['usuario_email'] = $login->getEmail();
+        $_SESSION['usuario_id'] = $login->getId();
+        $_SESSION['tipo_usuario'] = $login->getTipo();
         header("Location:../public/home.php");
     }
     else if($login && $login->getAtivo() == false) {
