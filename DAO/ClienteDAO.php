@@ -52,24 +52,24 @@ class ClienteDAO
         }
     }
 
-    // public function removeCliente($id)
-    // {
-    //     $pdo = connectDb();
-    //     $pdo->beginTransaction();
-    //     try {
-    //         $stmt = $pdo->prepare('DELETE FROM clientes WHERE id = :id');
-    //         $stmt->bindValue(":id", $id);
-    //         $stmt->execute();
-    //         if ($stmt->rowCount()) {
-    //             $pdo->commit();
-    //         }
-    //         return $stmt->rowCount();
-    //     } catch (PDOException $ex) {
-    //         echo "Erro ao excluir cliente: " . $ex->getMessage();
-    //         $pdo->rollBack();
-    //         die();
-    //     }
-    // }
+    public function removeCliente($id)
+    {
+        $pdo = connectDb();
+        $pdo->beginTransaction();
+        try {
+            $stmt = $pdo->prepare('DELETE FROM clientes WHERE id = :id');
+            $stmt->bindValue(":id", $id);
+            $stmt->execute();
+            if ($stmt->rowCount()) {
+                $pdo->commit();
+            }
+            return $stmt->rowCount();
+        } catch (PDOException $ex) {
+            echo "Erro ao excluir cliente: " . $ex->getMessage();
+            $pdo->rollBack();
+            die();
+        }
+    }
 
     public function inserirCliente(Cliente $cliente)
     {

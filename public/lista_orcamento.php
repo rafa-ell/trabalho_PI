@@ -16,11 +16,9 @@ $orcamento = $controller->buscarTodos();
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <!-- <th scope="col">Descrição</th>
-                <th scope="col">Código de barras</th>
-                <th scope="col">Estoque</th>
-                <th scope="col">Ativo</th> -->
+                <th scope="col">Endereço</th>
+                <th scope="col">Descrição</th>
+                  
                 <th>Ações</th>
             </tr>
         </thead>

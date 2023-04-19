@@ -37,6 +37,7 @@ class OrcamentoDAO{
             while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
                 $orcamento->setId($rs->id);
                 $orcamento->setEndereco(($rs->endereco));
+                $orcamento->setDescricao(($rs->descricao));
 
                 $retorno[] = clone $orcamento;
             }

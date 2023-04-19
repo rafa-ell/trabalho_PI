@@ -51,6 +51,8 @@ $orcamento = new Orcamento();
             <input type="submit" value="Submit">
         </div> -->
         <button type="submit" class="btn btn-primary">Solicitar orçamento</button>
+
+        <a class="btn btn-primary" href="lista_orcamento.php">Orçamentos</a>
     </form>
 
     
