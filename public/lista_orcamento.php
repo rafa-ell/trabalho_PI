@@ -18,6 +18,7 @@ $orcamento = $controller->buscarTodos();
                 <th scope="col">#</th>
                 <th scope="col">Endereço</th>
                 <th scope="col">Descrição</th>
+                <th scope="col">Profissional</th>
                   
                 <th>Ações</th>
             </tr>
@@ -30,6 +31,8 @@ $orcamento = $controller->buscarTodos();
                     <td><?= $orc->getId(); ?></td>
                     <td><?= $orc->getEndereco(); ?></td>
                     <td><?= $orc->getDescricao(); ?></td>
+                    <td><?= $orc->getNomeprof() ?></td>
+
                     
                     <td>
                         <!-- <a class="btn btn-light" href="cad_pagamento.php?key=<?=$orc->getId()?>">Editar</a> -->

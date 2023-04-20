@@ -35,3 +35,6 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/controllers/perfil
     </div>
 
 </div>
+<?php
+
+require_once('./footer.php');

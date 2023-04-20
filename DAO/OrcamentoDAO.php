@@ -8,10 +8,11 @@ class OrcamentoDAO{
         $pdo = connectDb();
         $pdo->beginTransaction();
         try {
-            $stmt = $pdo->prepare("INSERT INTO orcamentos (endereco, descricao, id_cliente) VALUES (:endereco, :descricao , :id_cliente)");
+            $stmt = $pdo->prepare("INSERT INTO orcamentos (endereco, descricao, id_cliente, id_prof) VALUES (:endereco, :descricao , :id_cliente, :id_prof)");
             $stmt->bindValue(":endereco", $orcamento->getEndereco());
             $stmt->bindValue(":descricao", $orcamento->getDescricao());
-            $stmt->bindValue(":id_cliente",$_SESSION['usuario_id']) ;
+            $stmt->bindValue(":id_cliente",$orcamento->getIdCliente()) ;
+            $stmt->bindValue(":id_prof", 1) ;
             $stmt->execute();
             if ($stmt->rowCount()) {
                 $pdo->commit();
@@ -25,12 +26,12 @@ class OrcamentoDAO{
         }
     }
 
-    public function buscarTodos()
+    public function buscarTodos($id_cliente)
     {
         $pdo = connectDb();
         try {
-            $stmt = $pdo->prepare("SELECT * FROM orcamentos WHERE id_cliente = :id_cliente;");
-            $stmt->bindValue(":id_cliente", $_SESSION['usuario_id']);
+            $stmt = $pdo->prepare("SELECT o.*, p.nome AS nomeProf FROM orcamentos AS o inner join profissionais AS p ON o.id_prof = p.id WHERE o.id_cliente = :id_cliente;");
+            $stmt->bindValue(":id_cliente", $id_cliente);
             $stmt->execute();
             $orcamento = new Orcamento();
             $retorno = array();
@@ -38,6 +39,7 @@ class OrcamentoDAO{
                 $orcamento->setId($rs->id);
                 $orcamento->setEndereco(($rs->endereco));
                 $orcamento->setDescricao(($rs->descricao));
+                $orcamento->setNomeprof(($rs->nomeProf));
 
                 $retorno[] = clone $orcamento;
             }
