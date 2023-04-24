@@ -9,7 +9,12 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/login.clas
 
 $profissional = new Profissional();
 
-if (isset($_POST) && isset($_POST['id'])) {
+var_dump($_POST);
+
+if (isset($_POST) && isset($_POST['id']) && empty($_POST['id'])) {
+
+echo 'teste';
+
     $id         = addslashes(filter_input(INPUT_POST, 'id'));
     $nome       = addslashes(filter_input(INPUT_POST, 'nome'));
     $cnpj    = addslashes(filter_input(INPUT_POST, 'cnpj'));
@@ -48,7 +53,14 @@ if (isset($_POST) && isset($_POST['id'])) {
 
         $dao = new ProfissionalController();
         $resultado = $dao->criarProfissional($profissional);
-        if ($resultado) {
+        if ($resultado) { 
+            $login = new Login ();
+            $loginDAO = new LoginDAO();
+            $login -> setEmail($email);
+            $login -> setSenha($senha);
+            $login -> setTipo("prof");
+            $login -> setAtivo(true);
+            $loginDAO -> inserirLogin($login);
             $_SESSION['mensagem'] = "Criado com sucesso";
             $_SESSION['sucesso'] = true;
         } else {
@@ -79,3 +91,6 @@ if (isset($_POST) && isset($_POST['id'])) {
     // }
     // header('Location:../public/cad_cliente.php');
 } 
+else {
+    echo 'else';
+}

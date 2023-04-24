@@ -6,17 +6,15 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/profis
 
 $profissional = new Profissional();
 
-if (isset($_GET) && isset($_GET['key'])) {
-    $id = filter_input(INPUT_GET, 'key');
     $controller = new ProfissionalController();
-    // $cliente = $controller->buscarPorId($id);
-}
+    $profissional = $controller->BuscarProfissionalPorEmail($_SESSION['usuario_email']);
 
 ?>
 
 <?php require_once('nav.php'); ?>
 
 <div class="container">
+    
     
     
     <h1>Criar cadastro </h1>
@@ -46,25 +44,34 @@ if (isset($_GET) && isset($_GET['key'])) {
 
         <label for="">Categoria de serviço:</label>
         <br>
-        <select name="" id="" form="" style="width: 190px; margin-bottom: 20px; margin-top: 20px;">
-            <option value=""></option>
-            <option value="">Elétrico</option>
-            <option value="">Hidráulico</option>
-            <option value="">Ar-condicionado</option>
-            <option value="">Dedetização</option>
-            <option value="">Fretes</option>
-            <option value="">Reparos</option>
-            <option value="">Pintura</option>
+        <select id="servico" name="servico" style="width: 190px; margin-bottom: 20px; margin-top: 20px;">
+            <option value="<?= $profissional->getServico() ?>"><?= $profissional->getServico() ?></option>
+            <option value="Eletricista">Elétrico</option>
+            <option value="Hidráulico">Hidráulico</option>
+            <option value="Ar-condicionado">Ar-condicionado</option>
+            <option value="Dedetização">Dedetização</option>
+            <option value="Fretes">Fretes</option>
+            <option value="Reparos">Reparos</option>
+            <option value="Pintura">Pintura</option>
         </select>
 
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="<?= $profissional->getEmail() ?>">
         </div>
-        <div class="mb-3">
-            <label for="senha" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="senha" name="senha" value="<?= $profissional->getSenha() ?>">
-        </div>
+
+        <?php
+        if (empty($profissional -> getId())) {
+            ?>
+
+            <div class="mb-3">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senha" name="senha" value="<?= $profissional->getSenha() ?>">
+                    </div>
+            <?php
+        }
+        ?>
+        
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 

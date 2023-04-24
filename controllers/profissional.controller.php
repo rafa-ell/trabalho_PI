@@ -23,6 +23,13 @@ class ProfissionalController
         return $dao->inserirProfissional($profissional);
     }
 
+    public function BuscarProfissionalPorEmail( $email)
+    {
+        $dao = new ProfissionalDAO();
+        return $dao->buscarProfissionalPorEmail($email);
+    }
+
+
     // public function atualizarCliente(Cliente $cliente) {
     //     $dao = new ClienteDAO();
     //     return $dao->atualizaCliente($cliente);

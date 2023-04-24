@@ -25,7 +25,7 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/controllers/perfil
         }
         ?>
         
-        <a class="btn btn-primary" href=".php">Favoritos</a>
+        <a class="btn btn-primary" href="#">Favoritos</a>
         <a class="btn btn-primary" href="./senha.php">Alterar Senha</a>
     </div>
 
