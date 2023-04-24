@@ -5,6 +5,7 @@ class Orcamento {
     private $endereco;
     private $descricao;
     private $idcliente;
+    private $nomecliente;
     private $idprof;
     private $nomeprof;
 
@@ -51,5 +52,12 @@ class Orcamento {
 
     public function getNomeprof() {
         return $this->nomeprof;
+    }
+    public function setNomecliente($nome) {
+        $this->nomecliente = $nome;
+    }
+
+    public function getNomecliente() {
+        return $this->nomecliente;
     }
 }

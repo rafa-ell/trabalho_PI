@@ -19,8 +19,18 @@ $orcamento = $controller->buscarTodos();
                 <th scope="col">#</th>
                 <th scope="col">Endereço</th>
                 <th scope="col">Descrição</th>
-                <th scope="col">Profissional</th>
-                  
+                <?php
+                if ($_SESSION['tipo_usuario'] == "user") { ?>
+
+                    <th scope="col">Profissional</th>
+
+                <?php
+                } elseif ($_SESSION['tipo_usuario'] == "prof") { ?>
+                    <th scope="col">Cliente</th>
+                <?php
+                }
+                ?>
+
                 <th>Ações</th>
             </tr>
         </thead>
@@ -32,9 +42,22 @@ $orcamento = $controller->buscarTodos();
                     <td><?= $orc->getId(); ?></td>
                     <td><?= $orc->getEndereco(); ?></td>
                     <td><?= $orc->getDescricao(); ?></td>
-                    <td><?= $orc->getNomeprof() ?></td>
 
-                    
+                    <?php
+                    if ($_SESSION['tipo_usuario'] == "user") { ?>
+
+                        <td><?= $orc->getNomeprof() ?></td>
+
+                    <?php
+                    } elseif ($_SESSION['tipo_usuario'] == "prof") { ?>
+                        <td><?= $orc->getNomecliente() ?></td>
+                    <?php
+                    }
+                    ?>
+
+
+
+
                     <td>
                         <!-- <a class="btn btn-light" href="cad_pagamento.php?key=<?= $orc->getId() ?>">Editar</a> -->
                         <a class="btn btn-link" href="../acoes/excluir_orcamento.php?key=<?= $orc->getId() ?>">Excluir</a>

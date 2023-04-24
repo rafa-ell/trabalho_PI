@@ -26,7 +26,7 @@ class OrcamentoDAO{
         }
     }
 
-    public function buscarTodos($id_cliente)
+    public function buscarTodosPeloCliente($id_cliente)
     {
         $pdo = connectDb();
         try {
@@ -40,6 +40,30 @@ class OrcamentoDAO{
                 $orcamento->setEndereco(($rs->endereco));
                 $orcamento->setDescricao(($rs->descricao));
                 $orcamento->setNomeprof(($rs->nomeProf));
+
+                $retorno[] = clone $orcamento;
+            }
+            return $retorno;
+        } catch (PDOException $ex) {
+            echo "Erro ao buscar orçamento: " . $ex->getMessage();
+            die();
+        }
+    }
+
+    public function buscarTodosPeloProfissional($id_prof)
+    {
+        $pdo = connectDb();
+        try {
+            $stmt = $pdo->prepare("SELECT o.*, c.nome AS nomeCliente FROM orcamentos AS o inner join clientes AS c ON o.id_cliente = c.id WHERE o.id_prof = :id_prof;");
+            $stmt->bindValue(":id_prof", $id_prof);
+            $stmt->execute();
+            $orcamento = new Orcamento();
+            $retorno = array();
+            while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+                $orcamento->setId($rs->id);
+                $orcamento->setEndereco(($rs->endereco));
+                $orcamento->setDescricao(($rs->descricao));
+                $orcamento->setNomecliente(($rs->nomeCliente));
 
                 $retorno[] = clone $orcamento;
             }
