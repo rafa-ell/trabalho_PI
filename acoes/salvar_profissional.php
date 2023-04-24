@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/acoes/verifica_sessao.php');
+// require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/acoes/verifica_sessao.php');
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/profissional.class.php");
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/profissional.controller.php");
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/DAO/LoginDAO.php");
@@ -41,13 +41,15 @@ echo 'teste';
     $email = isset($_POST['email']) ? $_POST['email'] : null;
     $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
 
+
+
     if ($nome && $cnpj) {
 
         $profissional->setNome($nome);
         $profissional->setCnpj($cnpj);
         $profissional->setTelefone($telefone);
         $profissional->setServico($servico);
-        $profissional->setPreco_hora($preco_hora);
+        $profissional->setPrecoHora($preco_hora);
         $profissional->setEmail($email);
         $profissional->setSenha($senha);
 
@@ -68,7 +70,7 @@ echo 'teste';
             $_SESSION['sucesso'] = false;
         }
     } else {
-        $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ2";
+        $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ";
         $_SESSION['sucesso'] = false;
     }
     header('Location:../public/cad_profissional.php');

@@ -8,8 +8,9 @@ $controller = new PagamentoController();
 $pag = $controller->buscarTodos();
 
 ?>
+<?php require_once('nav.php'); ?>
 <div class="container">
-    <?php require_once('nav.php'); ?>
+    
 
     <h1>Lista de cartões</h1>
     <a class="btn btn-primary" href="cad_pagamento.php">Adicionar Cartão</a>

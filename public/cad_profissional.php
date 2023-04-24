@@ -33,26 +33,26 @@ $profissional = new Profissional();
             <label for="telefone" class="form-label">Telefone</label>
             <input type="tel" class="form-control" id="telefone" name="telefone" value="<?= $profissional->getTelefone() ?>">
         </div>
-        <!-- <div class="mb-3">
-            <label for="servico" class="form-label">Serviço</label>
-            <input type="text" class="form-control" id="servico" name="servico" value="<?= $profissional->getServico() ?>">
-        </div> -->
         <div class="mb-3">
             <label for="preco_hora" class="form-label">Preço por hora</label>
             <input type="number" min="0.00" step="0.01" class="form-control" id="preco_hora" name="preco_hora" value="<?= $profissional->getPreco_hora() ?>">
         </div>
 
-        <label for="">Categoria de serviço:</label>
+        <label for="">Selecione a ategoria de serviço:</label>
         <br>
-        <select id="servico" name="servico" style="width: 190px; margin-bottom: 20px; margin-top: 20px;">
-            <option value="<?= $profissional->getServico() ?>"><?= $profissional->getServico() ?></option>
-            <option value="Eletricista">Elétrico</option>
-            <option value="Hidráulico">Hidráulico</option>
-            <option value="Ar-condicionado">Ar-condicionado</option>
-            <option value="Dedetização">Dedetização</option>
-            <option value="Fretes">Fretes</option>
-            <option value="Reparos">Reparos</option>
-            <option value="Pintura">Pintura</option>
+        <select name="servico" id="servico" style="width: 190px; height:30px; margin-bottom: 20px; margin-top: 10px;">
+            <option value=""></option>
+            <option value="servico_eletrico" <?= $profissional->getServico() == 'servico_eletrico' ? 'selected' : '' ?> >Serviços elétricos</option>
+            <option value="servico_hidraulico" <?= $profissional->getServico() == 'servico_hidraulico' ? 'selected' : '' ?>>Serviços hidráulicos</option>
+            <option value="ar_condicionado" <?= $profissional->getServico() == 'ar_condicionado' ? 'selected' : '' ?>>Ar-condicionado</option>
+            <option value="pequenos_reparos" <?= $profissional->getServico() == 'pequenos_reparos' ? 'selected' : '' ?>>Pequenos reparos</option>
+            <option value="fretes" <?= $profissional->getServico() == 'fretes' ? 'selected' : '' ?>>Fretes</option>
+            <option value="instalacoes" <?= $profissional->getServico() == 'instalacoes' ? 'selected' : '' ?>>Instalações</option>
+            <option value="pintura" <?= $profissional->getServico() == 'pintura' ? 'selected' : '' ?>>Pintura</option>
+            <option value="decoracao" <?= $profissional->getServico() == 'decoracao' ? 'selected' : '' ?>>Decoração</option>
+            <option value="servico_limpeza" <?= $profissional->getServico() == 'servico_limpeza' ? 'selected' : '' ?>>Serviços de limpeza</option>
+            <option value="pedreiro" <?= $profissional->getServico() == 'pedreiro' ? 'selected' : '' ?>>Pedreiro</option>
+            <option value="montador_moveis" <?= $profissional->getServico() == 'montador_moveis' ? 'selected' : '' ?>>Montador de móveis</option>
         </select>
 
         <div class="mb-3">

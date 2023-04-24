@@ -52,24 +52,47 @@ class ClienteDAO
         }
     }
 
-    // public function removeCliente($id)
-    // {
-    //     $pdo = connectDb();
-    //     $pdo->beginTransaction();
-    //     try {
-    //         $stmt = $pdo->prepare('DELETE FROM clientes WHERE id = :id');
-    //         $stmt->bindValue(":id", $id);
-    //         $stmt->execute();
-    //         if ($stmt->rowCount()) {
-    //             $pdo->commit();
-    //         }
-    //         return $stmt->rowCount();
-    //     } catch (PDOException $ex) {
-    //         echo "Erro ao excluir cliente: " . $ex->getMessage();
-    //         $pdo->rollBack();
-    //         die();
-    //     }
-    // }
+    public function buscarPorEmail($email)
+    {
+        $pdo = connectDb();
+        try {
+            $stmt = $pdo->prepare("SELECT * FROM clientes WHERE email = :email;");
+            $stmt->bindValue(":email", $email);
+            $stmt->execute();
+            $cliente = new Cliente();
+            while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+                $cliente->setId($rs->id);
+                $cliente->setNome(($rs->nome));
+                $cliente->setCpfCnpj($rs->cpf_cnpj);
+                $cliente->setTelefone($rs->telefone);
+                $cliente->setEmail($rs->email);
+                $cliente->setSenha($rs->senha);
+            }
+            return $cliente;
+        } catch (PDOException $ex) {
+            echo "Erro ao buscar cliente: " . $ex->getMessage();
+            die();
+        }
+    }
+
+    public function removeCliente($id)
+    {
+        $pdo = connectDb();
+        $pdo->beginTransaction();
+        try {
+            $stmt = $pdo->prepare('DELETE FROM clientes WHERE id = :id');
+            $stmt->bindValue(":id", $id);
+            $stmt->execute();
+            if ($stmt->rowCount()) {
+                $pdo->commit();
+            }
+            return $stmt->rowCount();
+        } catch (PDOException $ex) {
+            echo "Erro ao excluir cliente: " . $ex->getMessage();
+            $pdo->rollBack();
+            die();
+        }
+    }
 
     public function inserirCliente(Cliente $cliente)
     {

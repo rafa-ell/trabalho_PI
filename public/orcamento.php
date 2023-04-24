@@ -6,11 +6,13 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/orcame
 
 
 $orcamento = new Orcamento();
+$id_prof = null;
 
  if (isset($_GET) && isset($_GET['key'])) {
-    $id = filter_input(INPUT_GET, 'key');
-    $controller = new OrcamentoController();
+    $id_prof = filter_input(INPUT_GET, 'key');
+    // $controller = new OrcamentoController();
     // $cliente = $controller->buscarPorId($id);
+    $orcamento->setIdprof(1);
 }
 ?>
 
@@ -24,10 +26,23 @@ $orcamento = new Orcamento();
 
     <form method="POST" action="../acoes/salvar_orcamento.php">
       
+    <!-- <label for="">Categoria de serviço:</label>
+        <br> -->
+        <!-- <select name="" id="" form="" style="width: 190px; margin-bottom: 20px; margin-top: 20px;">
+            <option value=""></option>
+            <option value="">Elétrico</option>
+            <option value="">Hidráulico</option>
+            <option value="">Ar-condicionado</option>
+            <option value="">Dedetização</option>
+            <option value="">Fretes</option>
+            <option value="">Reparos</option>
+            <option value="">Pintura</option>
+        </select> -->
         <div class="mb-3">
             <label for="endereco" class="form-label">Endereço</label>
             <input type="text" class="form-control" id="endereco" name="endereco" value="<?= $orcamento->getEndereco() ?>">
             <input type="hidden" name="id" value="<?= $orcamento->getId(); ?>">
+            <input type="hidden" name="id_prof" value="<?= $orcamento->getIdprof(); ?>">
         </div>
         
         <div>
@@ -39,6 +54,8 @@ $orcamento = new Orcamento();
             <input type="submit" value="Submit">
         </div> -->
         <button type="submit" class="btn btn-primary">Solicitar orçamento</button>
+
+        <a class="btn btn-primary" href="lista_orcamento.php">Orçamentos</a>
     </form>
 
     

@@ -11,6 +11,7 @@ if (isset($_POST) && isset($_POST['id']) && !empty($_POST['id'])) {
     $id         = addslashes(filter_input(INPUT_POST, 'id'));
     $endereco       = addslashes(filter_input(INPUT_POST, 'endereco'));
     $descricao    = addslashes(filter_input(INPUT_POST, 'descricao'));
+    $id_prof    = addslashes(filter_input(INPUT_POST, 'id_prof'));
 
     if (empty($endereco) || empty($descricao)) {
         $_SESSION['mensagem'] = "Obrigatório informar endereço e descrição.";
@@ -29,6 +30,7 @@ if (isset($_POST) && isset($_POST['id']) && !empty($_POST['id'])) {
         
         $orcamento->setEndereco($endereco);
         $orcamento->setDescricao($descricao);
+        $orcamento->setIdprof($id_prof);
 
         
         $dao = new OrcamentoController();

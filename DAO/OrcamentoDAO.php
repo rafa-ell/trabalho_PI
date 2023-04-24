@@ -8,9 +8,11 @@ class OrcamentoDAO{
         $pdo = connectDb();
         $pdo->beginTransaction();
         try {
-            $stmt = $pdo->prepare("INSERT INTO orcamento (endereco, descricao) VALUES (:endereco, :descricao)");
+            $stmt = $pdo->prepare("INSERT INTO orcamentos (endereco, descricao, id_cliente, id_prof) VALUES (:endereco, :descricao , :id_cliente, :id_prof)");
             $stmt->bindValue(":endereco", $orcamento->getEndereco());
             $stmt->bindValue(":descricao", $orcamento->getDescricao());
+            $stmt->bindValue(":id_cliente",$orcamento->getIdCliente()) ;
+            $stmt->bindValue(":id_prof", 1) ;
             $stmt->execute();
             if ($stmt->rowCount()) {
                 $pdo->commit();
@@ -19,6 +21,73 @@ class OrcamentoDAO{
             return FALSE;
         } catch (PDOException $ex) {
             echo "Erro ao solicitar orçamento: " . $ex->getMessage();
+            $pdo->rollBack();
+            die();
+        }
+    }
+
+    public function buscarTodosPeloCliente($id_cliente)
+    {
+        $pdo = connectDb();
+        try {
+            $stmt = $pdo->prepare("SELECT o.*, p.nome AS nomeProf FROM orcamentos AS o inner join profissionais AS p ON o.id_prof = p.id WHERE o.id_cliente = :id_cliente;");
+            $stmt->bindValue(":id_cliente", $id_cliente);
+            $stmt->execute();
+            $orcamento = new Orcamento();
+            $retorno = array();
+            while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+                $orcamento->setId($rs->id);
+                $orcamento->setEndereco(($rs->endereco));
+                $orcamento->setDescricao(($rs->descricao));
+                $orcamento->setNomeprof(($rs->nomeProf));
+
+                $retorno[] = clone $orcamento;
+            }
+            return $retorno;
+        } catch (PDOException $ex) {
+            echo "Erro ao buscar orçamento: " . $ex->getMessage();
+            die();
+        }
+    }
+
+    public function buscarTodosPeloProfissional($id_prof)
+    {
+        $pdo = connectDb();
+        try {
+            $stmt = $pdo->prepare("SELECT o.*, c.nome AS nomeCliente FROM orcamentos AS o inner join clientes AS c ON o.id_cliente = c.id WHERE o.id_prof = :id_prof;");
+            $stmt->bindValue(":id_prof", $id_prof);
+            $stmt->execute();
+            $orcamento = new Orcamento();
+            $retorno = array();
+            while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+                $orcamento->setId($rs->id);
+                $orcamento->setEndereco(($rs->endereco));
+                $orcamento->setDescricao(($rs->descricao));
+                $orcamento->setNomecliente(($rs->nomeCliente));
+
+                $retorno[] = clone $orcamento;
+            }
+            return $retorno;
+        } catch (PDOException $ex) {
+            echo "Erro ao buscar orçamento: " . $ex->getMessage();
+            die();
+        }
+    }
+
+    public function removeOrcamento($id)
+    {
+        $pdo = connectDb();
+        $pdo->beginTransaction();
+        try {
+            $stmt = $pdo->prepare('DELETE FROM orcamentos WHERE id = :id');
+            $stmt->bindValue(":id", $id);
+            $stmt->execute();
+            if ($stmt->rowCount()) {
+                $pdo->commit();
+            }
+            return $stmt->rowCount();
+        } catch (PDOException $ex) {
+            echo "Erro ao excluir orçamento: " . $ex->getMessage();
             $pdo->rollBack();
             die();
         }
