@@ -4,6 +4,9 @@ class Orcamento {
     private $id;
     private $endereco;
     private $descricao;
+    private $idcliente;
+    private $idprof;
+    private $nomeprof;
 
     public function setId($id) {
         $this->id = $id;
@@ -27,5 +30,26 @@ class Orcamento {
 
     public function getDescricao() {
         return $this->descricao;
+    }
+    public function setIdCliente($id) {
+        $this->idcliente = $id;
+    }
+
+    public function getIdCliente() {
+        return $this->idcliente;
+    }
+    public function setIdprof($idprof) {
+        $this->idprof = $idprof;
+    }
+
+    public function getIdprof() {
+        return $this->idprof;
+    }
+    public function setNomeprof($nomeprof) {
+        $this->nomeprof = $nomeprof;
+    }
+
+    public function getNomeprof() {
+        return $this->nomeprof;
     }
 }

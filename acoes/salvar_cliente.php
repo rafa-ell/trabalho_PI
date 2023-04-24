@@ -15,6 +15,7 @@ if (isset($_POST) && isset($_POST['id']) && !empty($_POST['id'])) {
     $cpfcnpj    = addslashes(filter_input(INPUT_POST, 'cpfcnpj'));
     $telefone   = addslashes(filter_input(INPUT_POST, 'telefone'));
     $email   = addslashes(filter_input(INPUT_POST, 'email'));
+    
     var_dump($cpfcnpj);
 
     if (empty($nome) || empty($cpfcnpj)) {
