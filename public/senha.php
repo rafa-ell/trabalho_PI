@@ -16,9 +16,9 @@ if (isset($_SESSION) && isset($_SESSION['usuario_id'])) {
 
 ?>
 
-
+<?php require_once('nav.php'); ?>
 <div class="container">
-    <?php require_once('nav.php'); ?>
+    
 
     <h4>Alteração de Senha</h4>
 

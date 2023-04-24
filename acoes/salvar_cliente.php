@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/acoes/verifica_sessao.php');
+// require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/acoes/verifica_sessao.php');
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/cliente.class.php");
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/cliente.controller.php");
 require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/DAO/LoginDAO.php");
@@ -62,6 +62,7 @@ if (isset($_POST) && isset($_POST['id']) && !empty($_POST['id'])) {
     $cliente->setCpfCnpj($cpfcnpj);
     $cliente->setTelefone($telefone);
     $cliente->setEmail($email);
+    $cliente->setSenha($senha);
 
     $dao = new ClienteController();
     $resultado = $dao->criarCliente($cliente);

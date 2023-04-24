@@ -3,7 +3,7 @@ body {
 }
 
 div {
-  border: blue solid 2px;
+  /* border: blue solid 2px; */
 }
 
 .navbar {
@@ -12,8 +12,13 @@ div {
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
-  box-shadow: 0 4px 2px -2px gray;;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
+
+.container {
+  margin-top: 120px;
+}
+
 
 .cont-home {
   display: flex;
@@ -31,22 +36,17 @@ div {
   margin-left: 0px;
 }
 
-
-/* .container {
-  margin-top: 30px;
-  } */
-
 .logo {
   display: flex;
   justify-content: center;
-  padding: 20px;
-  margin-top: 60px;
+  /* padding: 20px; */
+  /* margin-top: 60px; */
   /* border-bottom: 1px gray solid; */
 }
 
 .img_logo {
-  height: 120px;
-  width: 120px;
+  height: 60px;
+  width: 60px;
 }
 
 /* .header {
@@ -122,10 +122,22 @@ div {
   }
     */
 
+.user, .terms {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.botoes {
+  margin-top: 120px;
+}
 
 .titulo {
   border-top: 1px gray solid;;
   border-bottom: 1px gray solid;;
+  margin-top: 120px;
+  margin-bottom: 40px;
+  padding: 8px;
 }
 
 ul {
@@ -135,6 +147,10 @@ ul {
   grid-gap: 9px 30px;
   gap: 20px 30px;
   grid-template-columns: repeat(auto-fit, minmax(130px, auto));
+}
+
+li {
+  background-color: white;
 }
 
 li a {
@@ -160,7 +176,7 @@ td {
 }
 
 .categoria {
-  box-shadow: 0 4px 2px -2px gray;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -171,13 +187,17 @@ td {
 .img {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
 }
 
 .img img {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  width: 149px;
-  height: 110px;
+  width: 70px;
+  height: 70px;
 }
 
 h3 {
@@ -213,7 +233,6 @@ h2 {
 }
 
 .desc {
-  background-color: gainsboro;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   width: 149px;
@@ -221,5 +240,32 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid black;
+}
+
+.app_conteudo {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.app {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}
+
+.app img {
+  width: 160px;
+}
+
+.img_phone {
+  display: flex;
+  justify-content: center;
+}
+
+.img_phone img {
+  width: 250px;
 }
