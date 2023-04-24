@@ -18,7 +18,7 @@ if (isset($_POST) && isset($_POST['id'])) {
     $preco_hora   = addslashes(filter_input(INPUT_POST, 'precohora'));
     $email   = addslashes(filter_input(INPUT_POST, 'email'));
     $senha   = addslashes(filter_input(INPUT_POST, 'senha'));
-   
+
 
     if (empty($nome) || empty($cnpj)) {
         $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ";
@@ -51,6 +51,13 @@ if (isset($_POST) && isset($_POST['id'])) {
         $dao = new ProfissionalController();
         $resultado = $dao->criarProfissional($profissional);
         if ($resultado) {
+            $login = new Login();
+            $login->setEmail($email);
+            $login->setSenha($senha);
+            $login->setAtivo(true);
+            $login->setTipo("prof");
+            $dao = new LoginDAO();
+            $dao->inserirLogin($login);
             $_SESSION['mensagem'] = "Criado com sucesso";
             $_SESSION['sucesso'] = true;
         } else {
@@ -80,4 +87,4 @@ if (isset($_POST) && isset($_POST['id'])) {
     //     $_SESSION['sucesso'] = false;
     // }
     // header('Location:../public/cad_cliente.php');
-} 
+}
