@@ -9,13 +9,18 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/login.clas
 
 $profissional = new Profissional();
 
-if (isset($_POST) && isset($_POST['id'])) {
+var_dump($_POST);
+
+if (isset($_POST) && isset($_POST['id']) && empty($_POST['id'])) {
+
+echo 'teste';
+
     $id         = addslashes(filter_input(INPUT_POST, 'id'));
     $nome       = addslashes(filter_input(INPUT_POST, 'nome'));
     $cnpj    = addslashes(filter_input(INPUT_POST, 'cnpj'));
     $telefone   = addslashes(filter_input(INPUT_POST, 'telefone'));
     $servico   = addslashes(filter_input(INPUT_POST, 'servico'));
-    $preco_hora   = addslashes(filter_input(INPUT_POST, 'precohora'));
+    $preco_hora   = addslashes(filter_input(INPUT_POST, 'preco_hora'));
     $email   = addslashes(filter_input(INPUT_POST, 'email'));
     $senha   = addslashes(filter_input(INPUT_POST, 'senha'));
 
@@ -32,7 +37,7 @@ if (isset($_POST) && isset($_POST['id'])) {
     $cnpj = isset($_POST['cnpj']) ? $_POST['cnpj'] : null;
     $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
     $servico = isset($_POST['servico']) ? $_POST['servico'] : null;
-    $preco_hora = isset($_POST['precohora']) ? $_POST['precohora'] : null;
+    $preco_hora = isset($_POST['preco_hora']) ? $_POST['preco_hora'] : null;
     $email = isset($_POST['email']) ? $_POST['email'] : null;
     $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
 

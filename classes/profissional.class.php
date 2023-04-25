@@ -50,11 +50,11 @@ class Profissional {
         return $this->servico;
     }
 
-    public function setPrecoHora($preco_hora) {
+    public function setPreco_hora($preco_hora) {
         $this->preco_hora = $preco_hora;
     }
 
-    public function getPrecoHora() {
+    public function getPreco_hora() {
         return $this->preco_hora;
     }
 

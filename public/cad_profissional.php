@@ -6,17 +6,15 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/profis
 
 $profissional = new Profissional();
 
-if (isset($_GET) && isset($_GET['key'])) {
-    $id = filter_input(INPUT_GET, 'key');
     $controller = new ProfissionalController();
-    // $cliente = $controller->buscarPorId($id);
-}
+    $profissional = $controller->BuscarProfissionalPorEmail($_SESSION['usuario_email']);
 
 ?>
 
 <?php require_once('nav.php'); ?>
 
 <div class="container">
+    
     
     
     <h1>Criar cadastro </h1>
@@ -36,8 +34,8 @@ if (isset($_GET) && isset($_GET['key'])) {
             <input type="tel" class="form-control" id="telefone" name="telefone" value="<?= $profissional->getTelefone() ?>">
         </div>
         <div class="mb-3">
-            <label for="precohora" class="form-label">Preço por hora</label>
-            <input type="number" min="0.00" step="0.01" class="form-control" id="precohora" name="precohora" value="<?= $profissional->getPrecoHora() ?>">
+            <label for="preco_hora" class="form-label">Preço por hora</label>
+            <input type="number" min="0.00" step="0.01" class="form-control" id="preco_hora" name="preco_hora" value="<?= $profissional->getPreco_hora() ?>">
         </div>
 
         <label for="">Selecione a ategoria de serviço:</label>
@@ -61,10 +59,19 @@ if (isset($_GET) && isset($_GET['key'])) {
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="<?= $profissional->getEmail() ?>">
         </div>
-        <div class="mb-3">
-            <label for="senha" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="senha" name="senha" value="<?= $profissional->getSenha() ?>">
-        </div>
+
+        <?php
+        if (empty($profissional -> getId())) {
+            ?>
+
+            <div class="mb-3">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senha" name="senha" value="<?= $profissional->getSenha() ?>">
+                    </div>
+            <?php
+        }
+        ?>
+        
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 

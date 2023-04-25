@@ -31,18 +31,21 @@ if ($servico == null) {
 <div class="container">
    
 
-    <h1>Lista de Profissionais</h1>
-    <!-- <a class="btn btn-primary" href="cad_servico.php">Novo Profissional</a> -->
+    <h1>Lista de Orçamentos</h1>
+    
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                
                 <th scope="col">Nome</th>
                 <th scope="col">Telefone</th>
-                <th scope="col">Serviço</th>
-                <th scope="col">R$ hora</th>
+                <th scope="col">Email</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Descrição do Serviço</th>
+                <th scope="col">Ações</th>
+                
 
-                <!-- <th scope="col">Ações</th> -->
+                
             </tr>
         </thead>
         <tbody>
@@ -51,20 +54,19 @@ if ($servico == null) {
             foreach ($profissional as $prof) :
             ?>
                 <tr>
-                    <td><?= $prof->getId(); ?></td>
+                    <!-- <td><?= $prof->getId(); ?></td> -->
                     <td><?= $prof->getNome(); ?></td>
                     <td><?= $prof->getTelefone(); ?></td>
-                    <td><?= $prof->getServico(); ?></td>
-                    <td><?= $prof->getPreco_hora(); ?></td>
+                    <td><?= $prof->getEmail(); ?></td>
+                    <!-- <td><?= $prof->getEndereco(); ?></td> -->
+                    <td><?= $prof->getDescricao(); ?></td>
+                    
 
                     <td>
-                        <a class="btn btn-light" href="orcamento.php?key=<?= $prof->getId() ?>">Contratar</a>
-                         <a class="btn btn-link" href="../acoes/excluir_profissional.php?key=<?= $prof->getId() ?>">Excluir</a> 
+                        <a class="btn btn-light" href="orcamento.php?key=<?= $prof->getId() ?>">Aceitar</a>
+                         <a class="btn btn-link" href="../acoes/excluir_profissional.php?key=<?= $prof->getId() ?>">Recusar</a> 
                     </td>
-                    <!-- <td>
-                        <a class="btn btn-light" href="cad_profissional.php?key=<?= $prof->getId() ?>">Editar</a>
-                        <a class="btn btn-link" href="../acoes/excluir_profissional.php?key=<?= $prof->getId() ?>">Excluir</a>
-                    </td>   -->
+                    
                 </tr>
             <?php
             endforeach;
