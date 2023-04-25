@@ -49,7 +49,7 @@ echo 'teste';
         $profissional->setCnpj($cnpj);
         $profissional->setTelefone($telefone);
         $profissional->setServico($servico);
-        $profissional->setPrecoHora($preco_hora);
+        $profissional->setPreco_Hora($preco_hora);
         $profissional->setEmail($email);
         $profissional->setSenha($senha);
 
