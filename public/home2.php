@@ -16,6 +16,7 @@ $controller = new ClienteController();
     <table class="table table-striped">
         <thead>
             <tr>
+                
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">CPF/CNPJ</th>
