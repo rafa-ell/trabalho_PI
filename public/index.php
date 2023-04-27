@@ -2,8 +2,10 @@
 require_once('./header.php');
 ?>
 
-<div class="container">
-
+<div class="container" style="margin-top: 80px;">
+    <div class="div-logo">
+        <img src="../assets/img/logo-design.png" alt="" class="logo-index">
+    </div>
     <form method="POST" action="../controllers/login.controller.php">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
@@ -29,4 +31,3 @@ require_once('./header.php');
     ?>
 
 </div>
-

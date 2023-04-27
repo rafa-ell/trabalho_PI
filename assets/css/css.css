@@ -270,3 +270,13 @@ h2 {
 .img_phone img {
   width: 250px;
 }
+
+.div-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.logo-index {
+width: 120px;
+}

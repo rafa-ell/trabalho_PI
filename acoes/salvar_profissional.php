@@ -9,7 +9,10 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/login.clas
 
 $profissional = new Profissional();
 
-if (isset($_POST) && isset($_POST['id'])) {
+// var_dump($_POST);
+// die();
+
+if (isset($_POST) && isset($_POST['id']) && empty($_POST['id'])) {
     $id         = addslashes(filter_input(INPUT_POST, 'id'));
     $nome       = addslashes(filter_input(INPUT_POST, 'nome'));
     $cnpj    = addslashes(filter_input(INPUT_POST, 'cnpj'));
@@ -68,7 +71,7 @@ if (isset($_POST) && isset($_POST['id'])) {
         $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ";
         $_SESSION['sucesso'] = false;
     }
-    header('Location:../public/cad_profissional.php');
+    
     // $cliente->setId($id);
     // $cliente->setNome($nome);
     // $cliente->setCpfCnpj($cpfcnpj);
@@ -87,4 +90,41 @@ if (isset($_POST) && isset($_POST['id'])) {
     //     $_SESSION['sucesso'] = false;
     // }
     // header('Location:../public/cad_cliente.php');
+} else {
+    $id         = addslashes(filter_input(INPUT_POST, 'id'));
+    $nome       = addslashes(filter_input(INPUT_POST, 'nome'));
+    $cnpj    = addslashes(filter_input(INPUT_POST, 'cnpj'));
+    $telefone   = addslashes(filter_input(INPUT_POST, 'telefone'));
+    $servico   = addslashes(filter_input(INPUT_POST, 'servico'));
+    $preco_hora   = addslashes(filter_input(INPUT_POST, 'precohora'));
+    $email   = addslashes(filter_input(INPUT_POST, 'email'));
+    $senha   = addslashes(filter_input(INPUT_POST, 'senha'));
+
+    if (empty($nome) || empty($cnpj)) {
+        $_SESSION['mensagem'] = "Obrigatório informar Nome e CNPJ";
+        $_SESSION['sucesso'] = false;
+        header('Location:../public/cad_profissional.php?key=' . $id);
+        die();
+    }
+    
+    $profissional->setId($id);
+    $profissional->setNome($nome);
+    $profissional->setCnpj($cnpj);
+    $profissional->setTelefone($telefone);
+    $profissional->setServico($servico);
+    $profissional->setPrecoHora($preco_hora);
+    $profissional->setEmail($email);
+    $profissional->setSenha($senha);
+    
+    $controller = new ProfissionalController();
+        $resultado = $controller->atualizarProfissional($profissional);
+
+        if ($resultado) {
+            $_SESSION['mensagem'] = "Atualizado com sucesso";
+            $_SESSION['sucesso'] = true;
+        } else {
+            $_SESSION['mensagem'] = "Erro ao atualizar";
+            $_SESSION['sucesso'] = false;
+        }
 }
+header('Location:../public/cad_profissional.php');
