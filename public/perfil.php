@@ -26,10 +26,6 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/controllers/perfil
         <a class="btn btn-primary" href="lista_orcamento.php">Orçamentos</a>
         <a class="btn btn-primary" href=".php">Favoritos</a>
         <a class="btn btn-primary" href="./senha.php">Alterar Senha</a>
-    </div>
-    <div class="botoes">
-        <!-- <a class="btn btn-primary" href="lista_orcamento.php">Orçamentos</a> -->
-
         <?php
         if (isset($_SESSION) && isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'user') {
         ?>
@@ -37,6 +33,11 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . '/controllers/perfil
         <?php
         }
         ?>
+    </div>
+    <div class="botoes">
+        <!-- <a class="btn btn-primary" href="lista_orcamento.php">Orçamentos</a> -->
+
+       
 
         <!-- <a class="btn btn-primary" href=".php">Favoritos</a>
         <a class="btn btn-primary" href="./senha.php">Alterar Senha</a> -->
