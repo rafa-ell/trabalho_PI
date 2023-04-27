@@ -12,7 +12,7 @@ class OrcamentoDAO{
             $stmt->bindValue(":endereco", $orcamento->getEndereco());
             $stmt->bindValue(":descricao", $orcamento->getDescricao());
             $stmt->bindValue(":id_cliente",$orcamento->getIdCliente()) ;
-            $stmt->bindValue(":id_prof", 1) ;
+            $stmt->bindValue(":id_prof", $orcamento->getIdprof(), pdo::PARAM_INT) ;
             $stmt->execute();
             if ($stmt->rowCount()) {
                 $pdo->commit();
@@ -26,8 +26,18 @@ class OrcamentoDAO{
         }
     }
 
+    private function logData($data) {
+        $arquivo = "log.json";
+        $json = json_encode($data);
+        $file = fopen(__DIR__ . '/' . $arquivo, 'w');
+        fwrite($file, $json);
+        fclose($file);
+    }
+
     public function buscarTodosPeloCliente($id_cliente)
     {
+        $data = array("idCLiente" => $id_cliente);
+        $this->logData($data);
         $pdo = connectDb();
         try {
             $stmt = $pdo->prepare("SELECT o.*, p.nome AS nomeProf FROM orcamentos AS o inner join profissionais AS p ON o.id_prof = p.id WHERE o.id_cliente = :id_cliente;");
@@ -40,8 +50,13 @@ class OrcamentoDAO{
                 $orcamento->setEndereco(($rs->endereco));
                 $orcamento->setDescricao(($rs->descricao));
                 $orcamento->setNomeprof(($rs->nomeProf));
+                $orcamento->setIdprof(($rs->id_prof));
 
                 $retorno[] = clone $orcamento;
+                $this->logData(array(
+                    "ID" => $orcamento->getId(),
+                    "Descricao" => $orcamento->getDescricao(),
+                ));
             }
             return $retorno;
         } catch (PDOException $ex) {
@@ -64,6 +79,7 @@ class OrcamentoDAO{
                 $orcamento->setEndereco(($rs->endereco));
                 $orcamento->setDescricao(($rs->descricao));
                 $orcamento->setNomecliente(($rs->nomeCliente));
+                $orcamento->setIdprof(($rs->id_prof));
 
                 $retorno[] = clone $orcamento;
             }

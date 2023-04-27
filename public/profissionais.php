@@ -36,7 +36,7 @@ if ($servico == null) {
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <!-- <th scope="col">#</th> -->
                 <th scope="col">Nome</th>
                 <th scope="col">Telefone</th>
                 <th scope="col">Serviço</th>
@@ -51,20 +51,20 @@ if ($servico == null) {
             foreach ($profissional as $prof) :
             ?>
                 <tr>
-                    <td><?= $prof->getId(); ?></td>
+                    <!-- <td><?= $prof->getId(); ?></td> -->
                     <td><?= $prof->getNome(); ?></td>
                     <td><?= $prof->getTelefone(); ?></td>
                     <td><?= $prof->getServico(); ?></td>
-                    <td><?= $prof->getPreco_hora(); ?></td>
+                    <td><?= $prof->getPrecoHora(); ?></td>
 
                     <td>
                         <a class="btn btn-light" href="orcamento.php?key=<?= $prof->getId() ?>">Contratar</a>
-                         <a class="btn btn-link" href="../acoes/excluir_profissional.php?key=<?= $prof->getId() ?>">Excluir</a> 
+                        <!-- <a class="btn btn-link" href="../acoes/excluir_profissional.php?key=<?= $prof->getId() ?>">Excluir</a> -->
                     </td>
                     <!-- <td>
                         <a class="btn btn-light" href="cad_profissional.php?key=<?= $prof->getId() ?>">Editar</a>
                         <a class="btn btn-link" href="../acoes/excluir_profissional.php?key=<?= $prof->getId() ?>">Excluir</a>
-                    </td>   -->
+                    </td>  -->
                 </tr>
             <?php
             endforeach;

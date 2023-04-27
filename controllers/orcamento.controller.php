@@ -26,7 +26,7 @@ class OrcamentoController
             return $dao->buscarTodosPeloCliente($cliente->getId());
         } else if ($_SESSION['tipo_usuario'] == "prof") {
             $profDao = new ProfissionalDAO();
-            $prof = $profDao->buscarPeloEmail($_SESSION['usuario_email']);
+            $prof = $profDao->buscarPorEmail($_SESSION['usuario_email']);
             $dao = new OrcamentoDAO();
             return $dao->buscarTodosPeloProfissional($prof->getId());
         }

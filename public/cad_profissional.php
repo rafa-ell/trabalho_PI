@@ -6,8 +6,11 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/profis
 
 $profissional = new Profissional();
 
+if (isset($_SESSION) && isset($_SESSION['usuario_email'])) {
+    $email = $_SESSION['usuario_email'];
     $controller = new ProfissionalController();
-    $profissional = $controller->BuscarProfissionalPorEmail($_SESSION['usuario_email']);
+    $profissional = $controller->buscarPorEmail($email);
+}
 
 ?>
 
@@ -16,8 +19,7 @@ $profissional = new Profissional();
 <div class="container">
     
     
-    
-    <h1>Criar cadastro </h1>
+    <h1>Cadastro</h1>
 
     <form method="POST" action="../acoes/salvar_profissional.php">
         <div class="mb-3">
@@ -34,8 +36,8 @@ $profissional = new Profissional();
             <input type="tel" class="form-control" id="telefone" name="telefone" value="<?= $profissional->getTelefone() ?>">
         </div>
         <div class="mb-3">
-            <label for="preco_hora" class="form-label">Preço por hora</label>
-            <input type="number" min="0.00" step="0.01" class="form-control" id="preco_hora" name="preco_hora" value="<?= $profissional->getPreco_hora() ?>">
+            <label for="precohora" class="form-label">Preço por hora</label>
+            <input type="number" min="0.00" step="0.01" class="form-control" id="precohora" name="precohora" value="<?= $profissional->getPrecoHora() ?>">
         </div>
 
         <label for="">Selecione a ategoria de serviço:</label>
@@ -59,19 +61,10 @@ $profissional = new Profissional();
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="<?= $profissional->getEmail() ?>">
         </div>
-
-        <?php
-        if (empty($profissional -> getId())) {
-            ?>
-
-            <div class="mb-3">
-                        <label for="senha" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="senha" name="senha" value="<?= $profissional->getSenha() ?>">
-                    </div>
-            <?php
-        }
-        ?>
-        
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" value="<?= $profissional->getSenha() ?>">
+        </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 

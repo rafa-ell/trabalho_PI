@@ -7,11 +7,11 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/controllers/client
 
 $cliente = new Cliente();
 
-if (isset($_SESSION) && isset($_SESSION['usuario_id'])) {
-    $id = $_SESSION['usuario_id'];
+if (isset($_SESSION) && isset($_SESSION['usuario_email'])) {
+    $email = $_SESSION['usuario_email'];
     $controller = new ClienteController();
-    $cliente = $controller->buscarPorId($id);
-}
+    $cliente = $controller->buscarPorEmail($email);
+} 
 
 ?>
 
@@ -19,7 +19,7 @@ if (isset($_SESSION) && isset($_SESSION['usuario_id'])) {
 
 <div class="container">
     
-    <h1>Criar cadastro </h1>
+    <h1>Cadastro</h1>
 
     <form method="POST" action="../acoes/salvar_cliente.php">
         <div class="mb-3">

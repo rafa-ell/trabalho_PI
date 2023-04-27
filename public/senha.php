@@ -66,3 +66,7 @@ if (isset($_SESSION) && isset($_SESSION['usuario_id'])) {
     </div>
 
 </div>
+
+<?php
+
+require_once('./footer.php');

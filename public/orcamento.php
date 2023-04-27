@@ -12,7 +12,7 @@ $id_prof = null;
     $id_prof = filter_input(INPUT_GET, 'key');
     // $controller = new OrcamentoController();
     // $cliente = $controller->buscarPorId($id);
-    $orcamento->setIdprof(1);
+    $orcamento->setIdprof($id_prof);
 }
 ?>
 

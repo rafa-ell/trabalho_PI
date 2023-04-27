@@ -6,10 +6,10 @@ class ProfissionalController
 {
 
     public function buscarTodos()
-     {
-         $dao = new ProfissionalDAO();
-         return $dao->buscarTodos();
-     }
+    {
+        $dao = new ProfissionalDAO();
+        return $dao->buscarTodos();
+    }
 
     public function buscarServico($servico)
     {
@@ -23,12 +23,11 @@ class ProfissionalController
         return $dao->inserirProfissional($profissional);
     }
 
-    public function BuscarProfissionalPorEmail( $email)
+    public function buscarPorEmail($email)
     {
         $dao = new ProfissionalDAO();
-        return $dao->buscarProfissionalPorEmail($email);
+        return $dao->buscarPorEmail($email);
     }
-
 
     // public function atualizarCliente(Cliente $cliente) {
     //     $dao = new ClienteDAO();

@@ -24,6 +24,7 @@ if (isset($_POST) && isset($_POST['id']) && !empty($_POST['id'])) {
 } else {
     $endereco = isset($_POST['endereco']) ? $_POST['endereco'] : null;
     $descricao = isset($_POST['descricao']) ? $_POST['descricao'] : null;
+    $id_prof    = addslashes(filter_input(INPUT_POST, 'id_prof'));
     
 
     if ($endereco && $descricao) {
@@ -46,5 +47,5 @@ if (isset($_POST) && isset($_POST['id']) && !empty($_POST['id'])) {
         $_SESSION['mensagem'] = "Obrigatório informar endereço e descrição.";
         $_SESSION['sucesso'] = false;
     }
-    header('Location:../public/orcamento.php');
+    header('Location:../public/orcamento.php?key=' . $id_prof);
 }

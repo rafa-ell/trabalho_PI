@@ -5,17 +5,22 @@ require_once(str_replace('\\', '/', dirname(__FILE__, 2)) . "/classes/cliente.cl
 class ClienteController
 {
 
-    // public function buscarTodos()
-    // {
-    //     $dao = new ClienteDAO();
-    //     return $dao->buscarTodos();
-    // }
+    public function buscarTodos()
+    {
+        $dao = new ClienteDAO();
+        return $dao->buscarTodos();
+    }
 
     public function buscarPorId($id)
     {
-        echo $id;
         $dao = new ClienteDAO();
         return $dao->buscarUm($id);
+    }
+
+    public function buscarPorEmail($email)
+    {
+        $dao = new ClienteDAO();
+        return $dao->buscarPorEmail($email);
     }
 
     public function criarCliente(Cliente $cliente)
