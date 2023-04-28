@@ -44,8 +44,8 @@ class ProfissionalDAO
                 $profissional->setTelefone($rs->telefone);
                 $profissional->setServico($rs->servico);
                 $profissional->setPrecoHora($rs->preco_hora);
-                $profissional->setEmail($rs->email); 
-                $profissional->setSenha($rs->senha);               
+                $profissional->setEmail($rs->email);
+                $profissional->setSenha($rs->senha);
             }
             return $profissional;
         } catch (PDOException $ex) {
@@ -126,26 +126,30 @@ class ProfissionalDAO
         }
     }
 
-    // public function atualizaCliente(Cliente $cliente)
-    // {
-    //     $pdo = connectDb();
-    //     $pdo->beginTransaction();
-    //     try {
-    //         $stmt = $pdo->prepare("UPDATE clientes SET nome = :nome, cpf_cnpj = :cpf, telefone = :tel WHERE id = :id");
-    //         $stmt->bindValue(":nome", $cliente->getNome());
-    //         $stmt->bindValue(":cpf", $cliente->getCpfCnpj());
-    //         $stmt->bindValue(":tel", $cliente->getTelefone());
-    //         $stmt->bindValue(":id", $cliente->getId());
-    //         $stmt->execute();
-    //         if ($stmt->rowCount()) {
-    //             $pdo->commit();
-    //             return TRUE;
-    //         }
-    //         return FALSE;
-    //     } catch (PDOException $ex) {
-    //         $pdo->rollBack();
-    //         echo "Erro ao atualizar cliente: " . $ex->getMessage();
-    //         die();
-    //     }
-    // }
+    public function atualizaProfissional(Profissional $profissional)
+    {
+        $pdo = connectDb();
+        $pdo->beginTransaction();
+        try {
+            $stmt = $pdo->prepare("UPDATE profissionais SET nome = :nome, cnpj = :cnpj, telefone = :tel, servico = :servico, preco_hora = :preco_hora, email = :email, senha = :senha WHERE id = :id");
+            $stmt->bindValue(":nome", $profissional->getNome());
+            $stmt->bindValue(":cnpj", $profissional->getCnpj());
+            $stmt->bindValue(":tel", $profissional->getTelefone());
+            $stmt->bindValue(":servico", $profissional->getServico());
+            $stmt->bindValue(":preco_hora", $profissional->getPrecoHora());
+            $stmt->bindValue(":email", $profissional->getEmail());
+            $stmt->bindValue(":senha", $profissional->getSenha());
+            $stmt->bindValue(":id", $profissional->getId());
+            $stmt->execute();
+            if ($stmt->rowCount()) {
+                $pdo->commit();
+                return TRUE;
+            }
+            return FALSE;
+        } catch (PDOException $ex) {
+            $pdo->rollBack();
+            echo "Erro ao atualizar cliente: " . $ex->getMessage();
+            die();
+        }
+    }
 }

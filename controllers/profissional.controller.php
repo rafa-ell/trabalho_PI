@@ -29,12 +29,12 @@ class ProfissionalController
         return $dao->buscarPorEmail($email);
     }
 
-    // public function atualizarCliente(Cliente $cliente) {
-    //     $dao = new ClienteDAO();
-    //     return $dao->atualizaCliente($cliente);
-    // }
+    public function atualizarProfissional(Profissional $profissional) {
+        $dao = new ProfissionalDAO();
+        return $dao->atualizaProfissional($profissional);
+    }
 
-    // public function excluirCliente($id) {
+    // public function excluirprofissional($id) {
     //     $dao = new ClienteDAO();
     //     return $dao->removeCliente($id);
     // }
